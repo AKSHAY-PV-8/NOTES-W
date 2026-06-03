@@ -1,0 +1,38 @@
+==> git init  -> used to initialize.
+
+.branch- is like a another version of your current branch.
+.commit- is like a snapshot of your project at certain time.
+
+==> git commit -m "message" is used for commit.
+
+when we commit it donot go to repo
+-it is in staging
+
+==>git status  -> used to show what are in the staging area.
+
+==>git add .  -> used to add all file created, modified or deleted ot git traking.
+
+==>git log  -> is used to show all status.
+
+==>git checkout / git switch  -> used to switch between the branches
+
+.There are 2 types of repositories
+-local repository -> version of project that exists in machine
+-remote repository -> version of project taht stores in servers like github, gitlab etc
+
+step to clone a project
+
+step 1: first creat a repo in git hub.
+step 2: copy the link (orgin).
+        when you clone a repository from github automaticaly name the remote repository as orgin.
+==> git branch -M main  ->used to change name of brang 
+                        in this name is change to main(standard practies)
+                        ex: git branch -M akshay -> name change to akshay
+
+step 3: git remote add origin https/:urllkhfdkld
+
+==> git branch branch-name -> used to create branch
+                            when you create a branch the code of the current branch should in new branch.
+
+            if you want to create a branch from spesific branch .
+            ==> git branch new-branch-name source-branch

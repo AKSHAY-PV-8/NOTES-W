@@ -1,0 +1,51 @@
+
+=>tab help to auto complete
+
+ls  -> list the all files in current directory
+
+    if us have to looke a folder in this directory
+
+    use     -> ls foldername
+ls -a   -> show hidden files
+ls -l   -> long listing
+
+man [comman]    -> used for getting details of commands, it git its 
+                documentation etc
+
+                exmaple : man ls => gives the documentation of ls command
+
+pwd     -> current working directory
+
+cd -> change directory , 
+    .only using cd moves to home directory
+
+start filename  -> open file
+
+mkdir name  -> create a folder
+
+new-item  -> create a file
+
+rm filename  -> remove file
+
+rm -r foldername  -> to remove folder name , it ask permission
+
+rm -rf foldername -> it will not ask permisson force to delete
+
+cp filename  place-where-to-copy  -> is used to copy file 
+
+                        example => cp filename where-to copy
+                                cp filenem folder/
+
+mv filename place-where-to-move  -> help to move files to folder
+
+mv filname name -> mv also used to rename  
+
+cat filename -> used to show the content in the file 
+                example -> cat notes/t.js
+
+set-content -> used to set content in the file 
+
+add-content -> used to add content 
+
+get-content fileName -totalcount number  -> returns the number of lines
+get-content fileName -tail number  -> return the last n lines
