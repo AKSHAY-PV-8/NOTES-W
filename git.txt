@@ -5,7 +5,7 @@
 
 ==> git commit -m "message" is used for commit.
 
-when we commit it donot go to repo
+when we commit it don't go to repo
 -it is in staging
 
 ==>git status  -> used to show what are in the staging area.
@@ -22,8 +22,8 @@ when we commit it donot go to repo
 
 step to clone a project
 
-step 1: first creat a repo in git hub.
-step 2: copy the link (orgin).
+step 1: first create a repo in git hub.
+step 2: copy the link (origin).
         when you clone a repository from github automaticaly name the remote repository as orgin.
 ==> git branch -M main  ->used to change name of brang 
                         in this name is change to main(standard practies)
@@ -36,3 +36,132 @@ step 3: git remote add origin https/:urllkhfdkld
 
             if you want to create a branch from spesific branch .
             ==> git branch new-branch-name source-branch
+
+
+
+
+
+TUTORIAL NOTES
+
+
+1. git and gitHub ?
+
+->git is used to track the code 
+->git hub is place where code is stored 
+
+
+NOTES
+-----
+
+=> there are 3 steps  
+. working directory 
+. stage -> my changes are ready they can move to the next step
+. local repository -> temporary area where files sit between working directory and 
+repository save 
+
+=> commit - permanently saving those changes to your local repository 
+=> repository - is a place where all the versions of your files and their complete change history are stored 
+
+
+
+*=>to clone -> git clone http://.....link
+*=>to show status -> git status 
+*=> add to stage -> git add . -> current directory 
+                 -> git add -A -> stage every single change across entire project 
+                 -> git add -all -> stage every single change across entire project 
+                 -> git add * -> stages all visible changes except for deleted files 
+
+*=> git reset -> to came change back (only bring back staged changes, not deleted file)
+*=> undo last commit -> git reset HEAD~
+*=> to remove any file from staging area -> git rm filename.ts (deleting and adding to staging in both steps)
+*=> to get back deleted file -> git reset --hard 
+*=> to force delete file -> git rm -f filename.ts
+*=> remove file from staging area but not in working directory -> git rm --cached filename.ts 
+*=> delete nested folder -> git rm -r <FOLDER>
+
+***=> show full commits -> git log 
+***=> show full commits in shorten format -> git log --oneline
+
+
+BRANCHING
+----------
+
+***=> show list of all branches -> git branch 
+***=> create new branch -> git branch branchName
+        (when we create new branch it exact copy of current branch)
+***=> to switch branch -> git checkout development 
+***=> to merge branch -> git merge main -m "message" (to merge main into current branch)
+
+
+MOVE BACK TO PREVIOUS COMMIT 
+----------------------------
+
+***=> list the commit -> git log --oneline
+***=> git checkout commitID -> (from commit log )
+
+
+COMPARE TO COMMITS 
+-------------------
+
+***=> git diff commitID1 commitID2
+
+IMP***=> to exit log view => press  Q
+
+
+FETCH, PUSH, PULL (Remote Repository)
+---------------------------------
+
+PUSH -> sending local changes to the remote 
+FETCH -> Bringing remote changes into your local repository, but not merging them yet 
+PULL -> Fetching plus merging-so your working directory immediately reflects remote changes 
+
+
+***=> to push -> git push  origin  main
+                          (remote)(branch name)
+***=> fetch works -> git fetch  (use when change made in remote repository)
+                     git merge 
+
+***=> git pull -> fetch + merge
+
+
+RESTORE 
+-------
+
+git restore folderName -> restore that folder at last commit 
+git restore . -> restore to entire repository to last commit
+
+GIT STASH
+----------
+
+if there is uncompleted works and you need to change the brach 
+-> this situation use STASH and stash the uncompleted work and switch to the branch 
+
+-> git stash 
+-> git stash pop -> to get uncompleted task back from stash and remove from stash 
+-> git stash list -> to show the stash list 
+-> git stash apply -> to get uncompleted task back from stash and stash don't remove from stash 
+-> git stash drop -> to drop the stash 
+
+REVERT (with out deleting earlier commit create a new commit with previous one )
+--------------------------------------------------
+->fixing an old mistake without deleting it 
+
+**=> fit revert commitID 
+  -> :wq  (write and quit)
+
+
+REBASE(not recommented😁)
+---------
+if want new feature in main branch to current branch with clean git lob
+
+***-> git rebase main
+
+
+PULL REQUEST
+------------
+in git hub 
+
+
+
+
+
