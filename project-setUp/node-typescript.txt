@@ -1,0 +1,5 @@
+npm init -y
+npm i -D typescript tsx @types/node
+npx tsc --init 
+
+add : "dev": "tsx watch index.ts" in package.json

@@ -1,0 +1,30 @@
+npm install @prisma/client 
+npm i prisma 
+
+npx prisma init 
+
+DATABASE_URL="postgresql://postgres:password@localhost:5432/databaseName
+
+to migrate 
+npx prisma migrate dev --name initial
+npx prisma generate
+
+
+to create 
+
+import { PrismaClient} from "@prisma/client"
+
+const prisma = new PrismaClient();
+
+const login = async(req, res) => {
+    const {id, email, name, password} = req.body;
+
+    try{
+        const newUser = await prisma.User.create({
+            data:{id, email, name, password}
+        })
+
+    }catch(err){
+        console.log(err)
+    }
+}

@@ -1,0 +1,127 @@
+? what is Docker ?
+- is virtualization software
+- makes developing and deploying applications much easier 
+- packages application with all the necessary dependencies configuration, 
+  system tools and runtime into a container 
+
+
+? what problem is solved and what is before docker?
+
+-> each developer needs to install and configure all services directly on 
+their OS on their local machine 
+-> installation process different for each OS environment 
+-> Many steps, where something can go wrong 
+
+=>>>>> with container 
+    - Own isolated environment
+    - packaged with all dependencies and configs
+    - start services as a Docker container using a 1 Docker command
+    - command same for all services 
+    - easy to run different versions of same app without any conflicts 
+
+-> it also help in development also  
+
+---------------------------------------------------------------------
+
+? HOW OS is made up of ?(windows)
+
+-> it has 2 main layers 
+    . OS applications Layer
+    . OS Kernel
+
+-> Kernel is the part that communicate with hardware (CPU, Memory storage etc..)
+-> Kernel is the core of OS 
+-> kernel interact between software and hardware component 
+
+OS Application Layer
+         |
+    OS Kernel 
+        |
+    Hardware 
+
+
+
+=>>> Both docker and Virtual machines are virtualizing tools 
+
+? what is Virtual machines ?
+
+->"A Virtual Machine is a software-based computer that runs inside a 
+real physical computer. It behaves exactly like a real computer 
+with its own OS, CPU, RAM, and storage — but it is completely virtual. 
+Multiple VMs can run on one physical machine at the same time."
+
+? what is Virtualization ? 
+
+-> "Virtualization is the process of creating a virtual (fake) version
+ of a physical resource like a computer, server, storage, or network 
+ using software. Instead of using one physical machine for one job, 
+ virtualization allows one physical machine to act as many machines 
+ simultaneously."
+
+
+
+? what is the difference between docker and virtual machine both do virtualize ?
+
+docker :- Contains the OS application layer 
+        - Services and apps installed om top that layer (example: java runtime, python runtime)
+        - it uses kernel of the host it don't have it's own kernel 
+
+VM :- it has application layer and it's own kernel 
+    - it virtualize complete OS system 
+
+
+differences: 
+    - docker image is much smaller (save lots of disk place)
+    - docker can fun much faster than VM (reuses the host kernel, vm put up th kernel every time it start)
+    - problem -> compability: 
+                    - vm is compatible with all OS 
+                    - docker compatible only with which is used 
+
+        
+        ->>>> DOCKER DESKTOP :- solve this problem 
+         - uses a hypervisor layer with lightweight linux distro 
+
+
+--------------------------------------------------------------------------------------------
+
+DOCKER IMAGES vs DOCKER CONTAINERS 
+
+? what is docker image ?
+
+-> A Docker Image is a ready-made package that contains everything 
+needed to run an application
+-> includes app source code, but also complete environment configuration 
+
+? what is docker container ?
+
+-> running instance of docker image 
+-> A Docker Container is a lightweight, isolated, and runnable 
+instance of a Docker Image. It contains the application and everything
+ it needs to run. Containers share the host OS kernel, making them
+  faster and lighter than Virtual Machines. Multiple containers can 
+  run on the same machine independently without affecting each other.
+
+
+=>>>> to take image from docker hub 
+- docker pull name:version 
+
+=>>> to start container 
+- docker run nameOfImage
+
+=>>> to list the running containers 
+- docker ps 
+
+=>>> docker run -d imageName
+-> -d => runs container in background and prints the container ID 
+
+=>>> docker run -d -p 9000:80 imageName
+-> -p => publish a container's prot to the host 
+
+
+
+NOTES =>>> when we use docker run 
+            - it always create new container , not re-use previous container 
+
+   =>> docker start containerID 
+    - to use existing container 
+
