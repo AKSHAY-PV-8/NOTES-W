@@ -125,3 +125,16 @@ NOTES =>>> when we use docker run
    =>> docker start containerID 
     - to use existing container 
 
+
+
+DEBUG
+-----
+=>> docker logs containerName 
+=>> docker exec -it containerID /bin/bash  =>> to get terminal of container 
+    exit => to exit 
+
+
+DOCKER VOLUMES 
+-----------------
+-Used for data persistence in Docker
+-Without a volume, data is lost after a container stops/restarts

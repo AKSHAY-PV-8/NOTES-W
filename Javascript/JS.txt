@@ -1,0 +1,1920 @@
+what in interpreted langaue and compiled laguage?
+    ->interpreted langaue execute code line by line 
+    ->compiled laguage first code is compiled first , then execured 
+
+what is difference between compiled and executing?
+
+    -> compiled means checking and transilating 
+    -> execution means execute the code 
+
+what is virtual machien?
+    -> is a softeware act like a computer 
+        java has jvm 
+
+js is compiled of interpreted laguage ?
+    js is both compiled and interoreted languate , jit compiled (just in time)
+
+what is byte code ?
+    in intermediate code betwenn source code and machine code 
+        it in not written by humen,
+        it is not directly understood by cpu,
+        it is understood by virtual machine
+
+why we need of bytecode ?
+
+    because differenct computers have differenct cpus 
+    instead of 
+        writing differenct compiler for windows 
+        another for linux 
+        another for Mac 
+
+        so java code is converted to byte code and
+
+        JVM on Windows runs it 
+        JVM on Linux runs it 
+        JVM on Mac runs it 
+        Same bytecode. Different JVMs.
+
+different jvm for different OS , why shouldn't create differenct compiler for different OS is
+this same so why ?
+
+    when we use different compiler => 
+        .when there is any change in java language , should change all compiler,
+        .security is hard 
+        .library become os specific
+        .No runtime optimizations
+        .Distribution is painful
+
+        -> why security is hard : .run direcetly on os 
+                                  .full access to memory 
+                                  .full access to files
+
+        -> why library become os spesific : .libraries is reusable code that talk to
+                                                -> file system ,
+                                                -> network,
+                                                -> memory 
+
+                                            without JVM , directly call OS calls like 
+                                                -> to create file 
+                                                 . in windows - CreateFile,
+                                                 . in linus - open,
+                                                 . in mac - open
+
+                                            so one library make bug 
+
+    Why JVM is better than multiple compilers
+    1️⃣ JVM is written ONCE per OS (big win)
+
+
+who V8 engine pipeline works ?
+    1. javascript source code 
+    2. parse -> abstract syntx tree()
+    3. use a interpreter called ignition and convert into bytecode 
+        start execution immediatly
+    4. while running V8:
+        .function which run ofen means freaquatly (hot functions)
+        .collects runtimes type info 
+    5. when code becomes "hot":
+        .TurboFan compiles bytecode into optimized machine code 
+    6. V8 throws away optimised code 
+        .falls backs to interpreter or recompiles 
+
+why js use both compiler and interpreter?
+
+    .for fast starup
+    .high preformance
+    .memory efficiency 
+        -> not all code needs compilation.
+        -> only hot code is compiles, saving memory
+    .dynamic type change support 
+        -> js varibles change types at runtime:
+            let x = 5;
+            x = "hellow"
+            -interpreter handles this easily, and the compilerlater optimizes based on real usage. 
+
+🔹 If JS used only an interpreter:
+    Code would start fast ✅
+    But run slow ❌ for heavy tasks
+
+🔹 If JS used only a compiler:
+    Code would run fast ✅
+    But startup would be slow ❌ (you’d wait before anything runs)
+
+
+
+what are function?
+    functions are like reusable code of block that does a special task;
+    it can define if onces and then call it any times
+
+what are objects?
+    object is like a container that store date in form of key value pairs.                
+
+why we use object instead of noraml variables?
+    in obejct we can store multiple values together as a single unit.
+
+what are methods?
+    methods are functions that belongs to object.
+
+    means the function is standalone
+          the method is function that store as a property of Object
+
+          A normal function
+            function greet() {
+            console.log("Hello!");
+            }
+
+            greet(); // "Hello!"
+
+
+            👉 greet is just a function — it doesn’t belong to any object.
+
+            A method inside an object
+            let person = {
+            name: "Alice",
+            sayHello: function() {
+                console.log("Hello, my name is " + this.name);
+            }
+            };
+
+            person.sayHello(); 
+            // "Hello, my name is Alice"
+
+
+            👉 sayHello is a method because it belongs to the person object.
+
+
+what are prototype?
+
+    in js every object has hidden property called prototype.
+    this prototype is just another object, which the current object can use to inherit properties and methods.
+
+    in simle words
+    
+    Imagine every object in JS has a secret parent.
+    If the object doesn’t know something, it will ask its parent.
+    That parent is called its prototype.
+
+
+    function Person(name) {
+    this.name = name;
+    }
+
+    // Add a shared method to prototype
+    Person.prototype.sayHi = function() {
+    console.log("Hi, I am " + this.name);
+    };
+
+    const p1 = new Person("Rahul");
+
+    p1.sayHi();  // Not inside p1 → found in Person.prototype
+
+prototype chain?
+
+    If JS doesn’t find a property/method on the object itself,
+    It looks into its prototype,
+    If still not found, it goes up the chain (prototype of prototype) — this is called the prototype chain.
+
+
+execution context?
+
+Evrything inside js happen inside the execution context 
+ 
+    execution context has 2 portion
+        memory heap /variable  environment : where the variables and functions are stored as a key value pairs
+        code / thread of execution : where each line is executed one at a time
+
+        js is a single threaded synchronous programing language , means it executes only one line of code at a time
+
+                      
+how js runs ?
+
+    each time we create a program a execution context is created 
+
+    in creating the execution context  ,
+                        the first step is the memory creation phase in which js allocate memory to each and every variables in js
+                        initially each variable is stored with a value of undefined and for funvtions there entire definition will be stored or copied there 
+                        
+                        in second phase js starts to assign values to the variable that we created, for each function invocation , js will create new execution context and add it at the top of the call stack and once the functon execution is complete the control comes back to the place where the function is invoked and that newly created execution context will be removed from the call stack
+                        for recursion  
+                            there will be nested execution context inside the global execution context
+        
+what is call stack ?
+
+                call stack is a stack ds that is used by js to store the order of execution context , once the function invocation is completed the function will be removed form the call stack
+
+
+CASE of creating execution context and memory?
+
+            CASE 1
+
+                fucntion outer(){
+                    console.log("hello);
+                    
+                }
+
+                => this is only function declaration 
+                . memory is allocated 
+                . a function object is created 
+                . reference is stored in memory 
+                . no Execution context is not created 
+
+                ===> in globel execution context store like
+                   . outer => fn reference
+
+            CASE 2
+
+                outer()
+
+            => 1. js sees outer()
+            => 2. Create a new Execution Context 
+            => 3. Pushes it to the Call Stack 
+            => 4. Exection the function 
+            => 5. Pops it after completion 
+
+
+            CASR 3
+
+                return outer
+
+            => thie just 
+                . Return the function reference 
+                . Does NOT execute the function 
+                . Does not Create exectution context 
+
+
+            CASR 4
+
+                return outer()
+
+            => Exection Context is Created 
+            => Because outer() is being called 
+  
+what is hoisting in js ?
+
+                it is the feature of js that enable us to access the variable (that are declared using var keyword) or function even before defining it .
+                function are fully hoisted means we can call the function way before initialisation and it works just fine 
+                     but for variable , name is only hoisted , means it value cannot be obtained it will be undefined , 
+                     the variable that are declared using let and const are also hoisted but there are in temporal dead zone and accessing them before initialisation throws the refernece error
+                like for function we can invoke the funtion way before it definition but it only work with proper function using normal synatax like this function <name>(){}
+                for arrow function it initially create  variable in the memory context and its value will be undefined , so if i try to call the function before definition and it  is stored in a variable  it will throw an error saying that variable can't be called 
+
+how function works in js ?
+
+                remember one thing each function has its own execution context. variable decalred inside the function will not affect the global variable even though both may have the same name , because js create diff memory for these two because it has diff execution context
+                and the execution context will removed once the function execution is completed
+
+Dot notation vs Bracket notation in object ?
+
+            see the code
+                
+                function getProp(item,value){
+                    console.log('value', item[value]);
+                    
+                    return item[value]? item.value:-1
+                }
+
+                console.log(getProp({a:42},'a')); here  by logic this will also need to print 42 but instead it prints undefined 
+                    beacuse for dot notaion js expect static value like while using dot notaion we must need to call the object with its exact name like here item.a will work but using that dynamic variable wont works
+                    but while using that bracket notation we can call that property of the object using static variable but in that case we need to pass it as string like this item['a'] or we can store that value in some variable  and pass that variable instead that will also works like this item[atext]
+
+                notes:-help clear doubt
+
+               An object is like a cupboard with drawers.
+
+                    Each drawer has a label (the property name).
+
+                    Inside each drawer is the thing you store (the property value).
+
+                    Example:const obj = { a: 42 };
+                            Cupboard = obj
+                            Drawer label = "a"
+                            Thing inside drawer = 42
+                       
+                    =>Dot notation → fixed drawer label
+
+                        ->obj.a
+                    👉 Means: “open the drawer with the label a.”
+                    (You type the label directly.)
+
+                    Bracket notation → use a variable to decide which drawer
+                    const key = "a";
+                    obj[key]
+
+
+                    👉 Means: “look at the variable key, see it has "a", then open the drawer labeled a.”
+
+                    Why your code broke
+                    item[value]   // ✅ uses the drawer label from the variable
+                    item.value    // ❌ looks for a drawer literally labeled "value"
+
+                    If your cupboard has a drawer "a", but you ask for "value", it will return undefined (empty).
+
+                ->when we use dot , it look for the label name 
+
+
+        
+what is window object and this keyword in js ?
+
+            window object is a global object that is created by the js along with the global execution context at the start of the execution of the program eventhough we have an empty js file . this windows object will be created automatically by the js engine at the start ,
+            all the global variable are stored in this windows object and can be obtained using window.variableName.
+  
+            and during the creation of the window object variable js automatically create a 'this' variable and at global level it will point to the window object . 
+     
+            these global object and execution context will be created by all the js engines in browser that global object is window and in node js it is called "global"  
+            the global variable that are declared using var will be attached to the window object by js and the global variable that are decalred using let or const wont be added
+
+why this keyword is created along with globel exextion context ?
+
+            Because JS is designed to be object-based.
+                -> this always points to the object that is currently executing the code 
+
+what is global object? 
+            it is a top level object that provide all inbuilt functions, consstanst and also hold global variables  
+
+        undefined vs not defined vs null
+
+            undefined means the variable is defined and it has its own memory in the memory context but it is not assigned a value yet so by default js assign  its value to be undefined kinda like a placeholder
+
+            in other hand not defined means that variable is not defined or it is absent in the memory context  
+
+            null is used to show thst this variable should have no value right now          
+        
+Scope chain in js?
+
+            whenever an execution context is created a local memory (where the variable inside that code or function will be stored ,that memory address) and a lexical enviroment is created
+            by saying lexical environment it means that a refernce to the parent's lexical environment , for the outer most or the global execution context this lexical enviroment point to null
+
+            so when we try to access a variable  js first try to search it inside the local scope then its lexical env and if it is not there it will move it further up its parents lexical env and up until it find the element or get null(value of the global lexical env)
+
+            by simply scope means the area or the places where we can access a variable variable  or funtion inside a js program
+
+
+
+are let and const variables are hoisted or not?
+
+            yes but they live in a place called dead temoral zone 
+
+what is dead temporal zone in js
+
+            it is the time period from when a let or const variable is hoisted to when it is assigned a value. that time period or time gap is called a temporal dead zone
+            and when we try to accesss a variable inside a temporal dead zone it gives us referenceError.
+   
+
+var vs let and const?
+            variable that are declared using var can be redeclared within in the same scope 
+            but cant do with let or const variables
+
+            var is function scoped 
+
+            let and const are block scoped and 
+            var is function scoped and global scoped 
+
+what is a block in js ?
+            simply -> it is the set of statement that are written inside a pair of {}
+            block is used to combine multiple statement together and to use it where js except only one .
+            block scope : means what all the functions and variables that we can access within a block.
+            variables declared using let and const are block scoped and are only accessible within a block
+    
+what is shadowing in js ?
+
+            when we redeclare a variable that is declared using var keyword the previous value of the variable will be replaced with this new value adn this is known as shadowing. 
+            happens when a variable declared in inner scope has same name as a variable declared in the outer scope then the inner one shadows the outer one   
+
+            fake shadowing : is when we try to redeclare a block variable using a var keyword within the block elemenet scope
+            happens when we try to declare the a block variable and redeclare them using var keyword in the same or inner scope 
+
+            example
+
+            ✅ Real Shadowing
+            let a = 100;
+
+            {
+            let a = 200;      // new variable in this block
+            console.log(a);   // 200 → inner one shadows outer
+            }
+
+            console.log(a);     // 100 → outer one is still there
+
+
+            👉 Inner a really hides the outer one inside the block.
+
+            ❌ Fake Shadowing
+            let a = 100;
+
+            {
+            // no new declaration
+            a = 200;          // this just changes the outer one
+            console.log(a);   // 200
+            }
+
+            console.log(a);     // 200 → outer was modified
+
+
+
+what is closure ?
+
+            closure means a function bundles with it lexical parent or lexicals scope 
+            here 
+                function a(){
+                    let x=10;
+                    function b(){
+                        console.log(x)
+                    }
+                    return b;
+                }
+                let y=a(); here we get the function b as it was returned by the function a
+
+                // some lines of code
+                y(); but here when we try to invoke the funtion b using y , we know that the function a is already out of the execution context 
+                so since it is out of the context we assume b to print not defined error but that where closure comes into play , even though a() is out of the  callstack b still got it closure that means b() still got all the refernce of its parents function so even though a() is out b still has its variable reference stored in its closure 
+
+                closure are created every time a function is declared inside another function and returned or used later
+
+?Encapulation is feature of closure , but we can use block also for that so why we use closures?
+
+    in block it hide the value inside a but it 
+        -> Exists only while the block executes
+
+            means example:
+
+                {
+                    let count = 0;
+                    count ++;
+                    console.log(count) // count
+                }
+
+                console.log(count) // ❌ Error — count is not defined
+
+
+        ✅ The variable is hidden — it cannot be accessed outside the block.
+        ❌ But the value is gone forever once the block ends.
+
+    But in closure
+
+        finction createCounter(){
+            let count = 0;
+
+            return function(){
+                count ++;
+                console.log(count);
+            }
+        }
+
+        const counter = createCounter();
+
+        counter() //1
+        counter() //2
+        counter() //3
+            
+        ✅ The variable count is hidden (like a block).
+        ✅ But also  it remembers its old value value after function finished.
+        👉 That’s the unique power of a closure.
+
+  
+=> How it works ?
+
+    1. when we create a  createCounter function 
+        =>it stores in memory
+
+    2. when call the createrCounter function, a new exection context is created inside the memory.
+        inside that executioncontext:
+            .The variable count is created and set to 0.
+            . function inner ins defined (but not executed yet).
+
+    3. the createCounter function finished
+
+        normally when fuction finishes, ites local variables(count) should be removed fom memory.
+
+        BUT — here’s the key point 🔥
+
+        the retrun function(inner) still needs acces to count .
+
+        So JavaScript does not destroy that variable.
+        Instead, it keeps it inside a special place called the "closure" — connected to that inner function.
+
+        
+                                                            
+?some use cases of closure 
+
+            closure are used in
+    => module design pattern
+                    The Module Pattern is a way to organize code by keeping some parts private and exposing only what is necessary.
+                    const text = (function(){
+                        let count = 0;
+
+                        return {
+                            inc : function(){
+                                count++
+                                console.log(count)
+                            }
+                        }
+                    })()
+
+                    text.inc() -> returns result 
+                    console.log(text.count) -> undifined → cannot access private variable
+
+                                                                
+    => currying => used to break function multiple arguments into sequence funtion each take one argument at a time.
+                    eg: function sum1(a){
+                        function sum2(b){
+                            return a+b; 
+                        }
+                        return sum2;
+                        }
+                        let res=sum1(10)(21)
+                        console.log(res);
+
+                        curring function remember the argument of earlier function with help closures
+
+                example of gst calculation(curring):
+                    
+                    const function calculatTax(taxRate){
+                        return function(amount){
+                            return taxRates * amount;
+                        }
+                    }                                                                         
+
+                    cosnt gst = calculatTax(0.18);
+                    console.log(gst(1000));
+              
+        =>function like once => those are function that are desiged to run only once       
+                memoization => to imporve performance by caching the result 
+                maintiaining state in async world
+                iteration
+                set timeouts
+                data encapsulation and hiding -  
+                                                Closures allow you to hide variables and functions from the outside world, providing a way to encapsulate data and create private state.
+
+                                                This is more powerful than block scope, because closures let you:
+
+                                                //Keep data alive across function calls (unlike block scope).
+                                                means variable inside is still remember by inner function , even after the outer function finished runnig
+    
+                                                Make variables inaccessible from outside, but still usable internally. 
+
+                                                    function counter() {
+                                                            let count = 0; // private variable
+
+                                                            return {
+                                                                increment() {
+                                                                count++;
+                                                                console.log(count);
+                                                                },
+                                                                decrement() {
+                                                                count--;
+                                                                console.log(count);
+                                                                }
+                                                            };
+                                                            }
+                                                            
+                                                            const c = counter();
+                                                            c.increment(); // 1
+                                                            c.increment(); // 2
+                                                            c.decrement(); // 1
+
+                                                            console.log(c.count); // ❌ undefined — can't access private variable
+
+        disadvantage of closure
+                every time a closure is formed it consumes a lot of memory and some time the closed variables are not garbage collected.
+                - closed variables are veriable that are remember by inner function , even after outerfunction is finished or closed.
+                closure consume memory since it retain the refernce of the outer variables.
+
+what are the real use of curring?
+
+     1. reuse a preconfigured function
+
+        suppose ypu want to add tax without curring
+
+            function addTax(rate, price){
+                return price + price * rate;
+            }
+            
+            console.log(addTax(0.1, 100)); // 110
+            console.log(addTax(0.1, 200)); // 220
+
+
+        using curring
+            function addTax(rate) {
+            return function(price) {
+                return price + price * rate;
+            };
+            }
+
+            const addGST = addTax(0.1);  // fix rate once!
+            console.log(addGST(100)); // 110
+            console.log(addGST(200)); // 220
+
+ how setTimeout Works ?
+            in setTimeout the callback is taken out and get attched that timer and it will be placed somehere other than callstack ( placed in web API or timer queue) and rest of the code will continue execution and when this timer exceeds, the setTimeout will take that callback function and append it to the call stack
+
+        setTimeout and closure / printing numbers from 1 to 10 after each second using setTImeout  ?
+
+            for (var i = 0; i < 5; i++) {
+  
+                setTimeout(() => {
+                console.log(i);
+                 }, i * 1000);
+  
+            }
+            here what we expect is it to print 0 to 4 after every second but it is not what actually happended here beacuse since the variable is declared using var and since that function execute very fast and the latest value of the variable i will be 5 and the function will use that laetst value beacause of the scope of that variable 
+            and that why we got 4 five times instead of numbers from 0 to 4
+
+            so to avoid this we can use a block scoped variable instead of a global scoped variable  like this
+
+            for(let i=0;i<5;i++){
+                setTimeout(()=>{
+                    console.log(i)
+                },i*1000)
+            }
+
+            in above code 
+            var is function-scoped, not block-scoped.
+            All 5 timeouts would print 5 after 0,1,2,3,4 seconds, because there’s only one i shared.
+            use let instead of var to get corret answer
+
+            this one work as we expected and it does beacuse now i is block scoped variable and for each iteration we get a unique variable i with its own memory and refernce so each setTimeout function is getting its own variable and will be able to Print diff values or like it has to work
+
+
+            so how to solve this even without using a block scoped variable 
+
+            for(var i=0;i<5;i++){
+                function inner(x){
+                    setTimeout(()=>{
+                        console.log(x)
+                    },x*1000)
+                }
+                inner(i)
+            }
+
+                                     
+
+            here this one will also print numbers from 0 to 4 , even though  the variable is global scoped when we pass it to that function it recieve its own individual variable and it print that variable instead to referencing tha global variable
+
+            =>var creates one shared variable i for the whole loop; the callbacks run later (after the loop finished) and therefore all see the final goes of i (which is 4).
+
+            =>let creates a new i for each iteration, so each callback sees the value for its own iteration.    
+
+Why var behaves this way (the technical reason)?
+
+        var is function-scoped (or global if not inside a function). There is one i variable for the entire loop.
+
+        Each callback forms a closure that closes over the environment where i lives — but closures keep a reference to the variable, not a frozen copy of its value.
+
+        By the time the callbacks run, the single i has value 4.
+
+        Important: closures remember variables (their lexical environment), not a snapshot of the value at the moment the closure was created.
+
+        How let fixes it (why 1 2 3)
+        for (let i = 1; i <= 3; i++) {
+        setTimeout(function () {
+            console.log(i);
+        }, 1000);
+        }
+
+
+        let is block-scoped and, in loops, JavaScript creates a new binding of i for each iteration.
+
+        Each callback closes over its own distinct i, so when the callbacks run later, they each see the value that belonged to their iteration: 1, 2, 3.
+
+ what is garbage collector in js means ?
+
+            garbage collectors are programs in js engine or the browser that help us to free memory by removing unused variable from the program
+            since js is a high level program, garbage collection is done by the engine itself but for programs like c , programers has the duty to allocate and disallocate memory
+
+what are high level languages ?
+
+            languages that are easily understandable by humans rather than low level porgrams like 0s & 1s
+ 
+        how closures and garbage collector are related ?
+
+            when we a function form a closure with its outer funtion, all the variables of the outer function will be wrapped or get closured in the inner function so the garbage collector cannot release those spaces since it is in closure with the inner function so if we make more closure memory management will be difficult
+
+            in some modern js engines like chrome's V8 it uses smart garbage collector which release the spaces of the variables those are in closure but not actually used by the inner functions like this
+
+            function a(){
+                let x=10;
+                let y=12;
+                function b(){
+                    console.log(x)
+                }
+            }
+
+            here even though we are not using the variable inside the b() it still wrap the variable in the closure of b()
+            but the smart garbage collector will only wrap the variable x into the funtion b() since y is not using
+
+what do u mean by pure function in js ?
+
+            pure function are function whose output completely depend on its input and it wont change or affect any external variables .
+            pure function are easily isolatable and easy to test
+            for same inputs the output of the pure funtion be always the same 
+            pure functin doesnot create any observable change outside its scope
+            impure functions are functions that output depend on external factors like db operations,performing i/o operations etc 
+ 
+            eg function add(a,b) //pure
+            {
+                return a+b;
+            }
+
+            let sum=0 //impure func => it is changing an external variable outside its scope
+            function add(a,b){
+                sum+=a+b;
+            }
+            function logMessage(msg) {
+                console.log(msg); // I/O = side effect
+                }
+  
+what is function statements/function definition in js ?
+            function statement is the way we create a function 
+            A function statement is the standard way to define a function using the function keyword
+
+what is function expresssion in js ?
+            it is the method of assigning a function to a variable and here the function acts like a value .
+
+what are the diff between the function statement and function expression 
+
+            the main diff is hoisting, function statements are fully hoisted and the function expresssion are not , beacuse here the variable name is only hoisted and create a error if we try to invoke it since that variable is initialised with undefined
+
+what do u mean by anonymous functions in js ?
+
+            in js, funtions with no names are called as anonymous functions 
+            we cannnot create anonymous function statement because the ES6 syntax wont allow it. but we can create anonymous functions using function expressions
+
+            eg : const add=(a,b)=>return a+b;  here the function has no name
+what is arrow functions ?
+
+what do u mean by named function expressions ?
+            named function expression are function expession which have a local name for those functions and will be accessible by the name only inside that function itself.
+            useful for creating function expression that requires recursion
+
+            eg: const factorial=function fact(x)=>{
+                                    if(x==1)
+                                    return 1;
+                                    else return fact(x-1)*x
+                                }
+                we cant do this using anonymous function expressions 
+                and that function fact is only accessible for that function itself and we cant use it using by calling fact();
+
+what is parameter and arguments in a function ?
+
+            parameters are the placeholder/variable that we used while defining the function .
+
+            arguments are the actual values that we pass to the function when we invoke it .
+
+            arguments are the values that we passed to function when we invoke the function.
+            parmeters are the value that getting passed to funtions
+            inside the functions the arguments that are passed to a function is called as parameter and we cannot access that value outside that functions
+
+what are first class functions or first class citizens ?
+
+            the ability of function to be passed as a value or as an argument to another function or to be returned from a function .
+            these ability of a function is called as first class functions it is not unique to js it is a programming lnaguage concept and many language(like ) has this ability .
+
+        in js, functions are treated as first class citizens means same as first class functions 
+
+            more refined one =>
+                                in js func are first class citizens that means func can be assigned to a variable , passed as an argument to other function,
+                                returned from a functions 
+
+
+what are callbacks ?  
+
+            callbacks are functions that are passed as an argument to another function and callback functions are the ones that enables us to do async operations inside js   
+
+            callback functions are functions that are passed as an arguments to another function and the recieving function calls it later so it is called callback function
+
+        how are event listeners and garbage collection are related ?
+
+            event listeners are really heavy , i mean event listeners makes closures with its parent and that closure wont be removed since that event listeners are need to be run full time since we dont know actually when we click that button or when the event listeners fires so that memory cant be freed 
+
+            refined version :
+                When an event listener is added (e.g., button.addEventListener()), it may form a closure by referencing variables in its outer scope.
+
+                As long as the event listener is active, those references stay in memory.
+
+                If you don’t remove listeners when no longer needed, JS can’t garbage collect the closed-over variables — leading to memory leaks.
+
+            its good remove event listener once it is not using the method 
+            removeEventListener()
+
+
+
+        web API in js ?
+
+            web api in the browser provide a lot of functionality to the js that we normally use like setTimeout , domAPIs , console , fetch Api etc
+            these all are stored inside the global object window and we can access them using window.setTimeout() or so , but we actually dont use like that since it is a global object we can simply use it by calling the method names alone 
+
+        how setTimeout actually works in the context of call stack ? (more detailed)
+
+            once  a setTimeout web api is used the callback function is removed from the callstack and added it to the timer queue with the timer attached to it so once the timer exceeds the calllback is then taken out of the timer queue and put inside the callback queue .
+
+            event loop : it is like a gatekeeper that gatekeeps the callstack , so when something comes in the callback queue,  event loop will first check whether the callstack is empty or not if it is empty then the event loop takes the callback and put it in the callstack and callstack will execute it right away
+   
+
+            similarly when we use the dom api for attaching a event listener to  element the callback will stay in the web api  until and unless we click that element or until that event is fired , and when it is fired the callback will be moved to the callback queue and from their to callstack by the event loop
+
+
+        what are microtask queue and task queue or callback queue ?
+
+            microtask task queue is a priority based intermediate queue that stays in between the callstack and event loop.
+            all the process inside the microtask queue is completed first and only after that the process inside the callback queue get a chance to execute .
+ 
+            the promises and callback functiions thar are returned by the mutation observer are only placed inside the microtask queue
+            while all the other callbacks are placed inside the callback queue for execution 
+
+            starvation in callback queue => happens when the task inside the microtask queue create more and more promise or higher priority task , then the task inside the callback queue wont get a chance to execute and leads to starvation (means it doesnt get the rersources to run or wont be allowed to run )
+
+            what will be the output of the code
+                    setTimeout(() => console.log("first"), 0);
+                    new Promise((resolve, reject) => {
+                    resolve(true);
+                    }).then((val) => console.log("response frm promise ", val));
+                    let i = 0; 
+                    while (i < 1000000000) {
+                    i++;
+                    }
+
+                    console.log("last");
+
+
+                        here what happen is js engine first get to the line one and stsrt that setTimeout func and pop it out of call stack and passit to the web api and move on to the next line 
+
+                        in the next line it will it encouners the promsie and it will create a object in the memory with property called valeu which indicate the promise resolved and two functions onFulfill and onReject which will invoke the functiion basedon the promise state .
+                        and these promise will alsoi added to the web api and js engone move on to the next line of code and it encounter that while loop and the js engine will wait for those certain moments in thi stime the js engne will actually wait for that time 
+                        and after that it will console.log that mesage 'last'
+                        even though thse promise and setTImeout si already resolved even after js start executing that whil eit will need to eait till the call stack is empty
+
+                        once the promsie ir resolved or reject the valeu field in the promise object in the memory will be populated with the corresponding value and those callback are invoked right away
+                        and that promise result along with the callback function will be aded to the microstask queue while the settimeout result willbe added at the callback queue and eventhough the setTImeoutis resolved first it will execute after the promsie beacse of the higher priority of the microtask queue
+
+        notes 
+
+            to run js anywhere we just need a js runtime environment 
+            some common js engine used in modern browsers 
+
+                chakra : used by microsoft edge
+                V8 (written using c++): used by chrome and other chromium based browsers (brave), node js , deno etc
+                spiderMonkey : used by mozilla firefox
+                jscript : internet explorer
+                scriptEase : js used in james web space telescope
+                chromium based browser means the browsers that utilises chromium open sourced project as foundation
+            the first js engine was the spider monkey created by the brendan eich(creator of js and founder of mozilla firefox) at netscape communications for their browsers 
+
+
+
+        what is event loop?
+
+              event loop is mechanism that allow js to perform asychronous operations(like setTimeout, promises, async/await, DOM events).
+              it work using using 
+              callstack,
+              task Queue,
+              microtask Queue,
+
+              when they complete the callback it moves to task queue.
+
+              taskQueue stores all callbacks from asynchronous operations like setTimeout, setInterval, DOM events.
+              microstask Queue stores promises.
+
+              then the event loop check the call stack, and if the call stack is empty then push task from queues to stack.
+
+      Why does JavaScript need an Event Loop?
+
+            js is single threaded synchronous language so , so with out an event loop js can’t perform the asychronous tacks,
+
+      notes
+
+              Detailed Flow of Event Loop
+
+              Call Stack executes synchronous code first
+
+              Functions are pushed → executed → popped.
+
+              As long as the stack isn’t empty, queued tasks wait.
+
+              Microtask Queue (high priority)
+
+              After the current synchronous task finishes, the event loop checks the microtask queue first.
+
+              Executes all microtasks (Promises, queueMicrotask, process.nextTick in Node.js) until it’s empty.
+
+              If new microtasks are added while running, they are executed before moving on.
+
+              Macrotask Queue (normal priority)
+
+              When the stack is empty and microtasks are done, the event loop takes the next macrotask (setTimeout, setInterval, setImmediate, DOM events, I/O callbacks).
+
+        what is a JRE ?
+            the JRE is the container that has eveything requires to run the js code . the heart of the JRE is the JS Engine . it contain web apis , callback queue ,microstask queue etc 
+            JRE is the complete system that allows js to run outside the source code especially in env like browser or node js
+
+        what is js Engine ?
+             
+            js engine is a program written in c++ used to execute js codes.
+            it does not directly convert high level lang to low level lang just like normal interpreter does , instead it first convert our code using a parser and create a abstract syntax tree and the interpreter inside the js engine will use this ast and convert it into machine code and for performance improvement the JIT will compile the frequently used code to produce better optimised code 
+
+            and by that js engine can act both fast (using interpreter) and efficient (using JIT)  
+
+            in V8 js Engine 
+                the Interpreter is called as Ignition
+                the compiler is called a
+                s TurboFan
+                the grabage collector used to relieve the memory heap is known as  Orinoco and oil pan(used only for managing dom related objects) which uses the algorithm "mark and sweep"
+
+            mark and sweep algorithm
+                            used for memory management by the Garbage collector , it has 2 steps  
+                                1.marking : objects that are still in use or reachable or referencing
+                                2.sweeping : delelting the rest of the objects that are not reachable or not used          
+
+
+            Importanat  things :
+                   
+                    The     callback function only get a chamce to execute in the call stack queue only when the callstack and the microtask queue is empty
+
+                    if a setTimeout method is used and setup a callback that run after 5s but it wont be sure that it will run exactly after the 5s beacuse if the main thread has some other code to run some synchronous operation like some other activity the main thread will be busy doing that and in that case the callstack wont be empty and callback function of the setTimeout can't run in callstack
+  
+            what is SetTimeeout(()=>console.log('hello'),0) does ?
+                
+                here we are creating a callback func to run after 0 seconds and we are doing this so that this task wont block the main thread like if the callback funcction is actually not that important then we use this so that all the main thread execution will be completed first and only after then this callback will be called 
+
+
+            what are the issues with the callbacks ?
+ 
+                the main issues with call back are 
+                    1.callback hell or pyramid of doom
+                            when multiple async operations depends on each other,     callbacks get deeply nested making the code hard to read and  maintain and create a pyramid like struture horizontally due to the indendation and it is called pyramid of doom 
+
+                            so to avoid this callback hell we can use promises or async/await
+
+                            ->In large number code ther is so many callbacks are occures when we code
+                                the program. when occuring of some many nested callback, 
+                            -> leads to difficulty in maintaing code
+                                                                                                                                                     
+                    2.inversion of control
+                            happens as a side effect of callback hell , like when we pass a callback , it is the resposibility of that function to execute this callback and 
+                            we kinda give the entire control of that callback to that function.
+
+                            ->When we callback a function ,the controll of callback function is in
+                              other functions hand , so we don't know when that function will call, 
+                              or is it exicute .
+                              -> this lose of controll of callback function is called inversion of 
+                              controll.
+
+                                  ex: const cart = ["shoes", "pants", "kurta"];
+
+                                      createOrder(cart, function (orderId){
+                                      proceedToPayment(orderId)});
+
+                                  in this above example the controll of proceedToPayment funtion in
+                                  hands of createOrder funtion;
+
+
+                                  🧩 What problem do Promises solve?
+
+                                        Before Promises, we used callbacks for async work — but callbacks often led to:
+
+                                        Callback Hell (deeply nested callbacks)
+
+                                        Difficult error handling
+
+                                        Hard-to-read code
+
+                                    👉 Promises fix these issues by providing a clean, chainable, and predictable way to handle async results.
+
+                            notes///
+
+                            => PROMISES
+                            -------------
+
+                            ->promises are nothing we can assume it as a object with data value.
+                            -> when code starts exicution.
+
+                                ex: const promise = createOrder(cart);
+                                    
+                                    promise.then(funtion (orderId){
+                                    proceedToPayment(orderId);})
+
+
+                                when we use like this using "then", when the promise varible creatd a
+                                it automaticaly fill data in th promie object
+
+
+                                ->diference between
+                                -------------------
+
+                                ex: const cart = ["shoes", "pants", "kurta"];
+
+                                    createOrder(cart, function (orderId){
+                                    proceedToPayment(orderId)});
+
+                                and
+
+
+                                const promise = createOrder(cart);
+                                    
+                                    promise.then(funtion (orderId){
+                                    proceedToPayment(orderId);})  
+
+                                =>when we use the first option the callback function is passed to 
+                                createOrder function
+
+                                but,
+
+                                in second option the callback function is attached to promise object
+
+                                this make lot of differense
+
+                                ->promise object garantines that when a data is in the promise object
+                                it defenetly execute in this case controll is not taken by another 
+                                function.
+
+                              -> fetch return promise
+
+                            ------------------------------------------------------------------
+
+                              FOR INTERVIEW
+                              ---------------
+
+                              => promise is a placeholder that filled later with a value.
+                                -------------------------
+                              => **main
+                                promise is object that represent the eventual complition of 
+                                async operation .
+
+
+                            --------------------------------------------------------------------
+
+                              PROMISE CHAINING
+                              -----------------
+
+                              when we use so many nexted callbacks are done, callback hell should 
+                              occuers to avoid it  we use promise chaining like bellow
+
+                              using .then
+
+                              ex: createOrder(cart)
+                              .then(function (orderId){
+                                prceedToPayment(orderId)});
+                              .then(function (paymentId){
+                                showOrderSummary(paymentId)};
+
+
+                            => promise has 2 part 
+
+                            - consuming part -> is above things.
+
+
+                            - creation part -> const pr = new Promise(function(resolve, reject){})
+
+
+
+
+            what are promises in js ?
+                promises are objects that represent the eventual completion of a async operation 
+
+
+
+            how to create a promise ?
+                 In JavaScript, a Promise is created using the Promise constructor. It takes a function as an argument, known as the executor, which in turn accepts two functions: resolve and reject.
+
+                 const myPromise = new Promise((resolve, reject) => {
+                    const success = true;
+
+                    if (success) {
+                        resolve("Operation successful!");
+                    } else {
+                        reject("Operation failed!");
+                    }
+                    });
+
+                    myPromise
+                    .then(result => console.log(result))
+                    .catch(error => console.error(error));
+
+
+                 A Promise has 3 possible states:
+
+                    Pending – Initial state, neither fulfilled nor rejected.
+
+                    Fulfilled – The operation completed successfully and resolve() was called.
+
+                    Rejected – The operation failed and reject() was called.
+                                                                 
+                 Methods to Consume a Promise:
+                    .then() – Runs when the promise is fulfilled
+                    .catch() – Runs when the promise is rejected
+                    .finally() – Runs after the promise is settled (fulfilled or rejected)
+
+            Promise apis
+                1.promsie.all() => is used to resolve multiple promises by passing an array of promises , it return the results of these promises collectly if all of them are success and it will return the resultant promise only after all the promises are completed .
+                and if any one of the promsies fails it just throw the error and wont consider the non failure or already completed promise it just return or throw an error. This is called  failfast beacuse if one of the fails the entire promise result fails
+                it retunrs a promise  and it follows parallel execution with the help of web api ( since we cannot achieve parallelism with js since it is single threaded)
+
+                2.promise.allSettled() => this will return the set of promsies that are completed even though some of them are failed it will returned all the fulfilled promise result
+                    the resulting array has same length as that of the passed promise array it will wait for all the promises to settle and return the result even if it is rejected then it return error corresponding to that promise
+                    returns a promise it is also execute as parallel execution        
+       
+                3.promise.race() => it is actually kind a race between the promsies like in the array of passed promises the race() method will return the value of the first settled promise
+                promise.race() will return the value of the first resolved result only whether it fulfilled or rejected it just return the first resolved promise
+                returns a promise faciliatate parallel execution. 
+              
+                                                                          
+
+                4.promise.any() => this will return the first promise that get fulfilled unlike race() method this one will return the firstly resolved or fulfilled promise 
+                in promise.any() method if all the passed promsies fails then the result will be an aggregated error which combined of all the error from the promises array like a list of error corersponding each promise
+                called as success seeking api
+                returns a promise faciliatate parallel execution
+        
+            what is aggregate error in promsie ?
+
+                a special error object used when all promises fails in methods like promise.any()
+                to access individual error using error.errors
+
+            what is the difference between settled, resolved, rejected in promises?
+
+                 setteled means got th result, if the promise is setteled the promise can either resolved or rejected.
+
+                 resolved means fulfilled
+
+                 rejected means failure and rejected.
+
+
+              notes
+                when we use a async key word it always return a promise
+
+                if the function is retrun the a non promise function but if the function use async key word the value will wrap with priomise and return it.
+
+                if function returns  a promise then it will it will return only that promise.
+
+
+                example:
+
+                async function getData(){
+                  retrun "Hello";
+                };
+
+                const dataPromise = getData();
+
+
+                when we write a code like above the value Hello is wrapped with promise and in console show like 
+
+                -> Promise{<fullfilled> : "Hello"};
+
+                we can access the value by using .then
+
+                ->dataPromise.then(res => console.log(res))
+
+                =>"Hello";
+
+
+          notes
+
+              async and awaits are used for handle promises
+
+              await is keyword that can only be used inside a async function.
+
+
+              insted of .then we can use await
+
+              make lote of difference
+
+            async functions ?
+                async func are declared using async keyword
+                they are used to asynchronous code , the async function always return a promise even though we just return a normal value async function will wrap the result inside a promsie and return it instead
+
+                await is a keyword that we use only inside a async function to handle a promise
+                Use await inside it to pause until a promise settles
+
+            what are the diff between async/await and promises ?
+
+                in the promise consumer fucntion the js engine will not wait for th promise to get settled , it just dont wait ,it just continue executing the rest of the code and print the result once the promsie is settled .
+                so all the line of code written after promise resolution will be executed before actual resolution of the promise
+
+                but in async/await funcion it acts like a sync code , like the async operation is given higher proirity there , the js engine will actual not wait but it looks like  the async operation to complete and only after completing it , the js engine will continue to run the code below it 
+
+                in async/await function assume we are resolving multiple promsies and js will always folllow the order of execution here . assume the first promsie takes 100s to complete and the second one just takes 4s but still the js engine print the result only after the first one complete and after first promise is complete then only it start to resolve the second promise and then only the entire funtion will be completed 
+                once the first one completes it print the result and after it logs the result of the second one and it goes on in that same fashion
+
+                Both Promises and async/await are used to handle asynchronous operations in JavaScript, but they differ mainly in syntax and readability. Promises use .then() and .catch() chaining to handle success and error cases, which can become hard to follow when multiple asynchronous tasks are chained together, especially in deeply nested situations. Async/await, on the other hand, is syntactic sugar built on top of Promises that allows you to write asynchronous code in a style that looks and behaves more like synchronous code. This makes it easier to read, maintain, and reason about. With async/await, you can use regular try...catch blocks for error handling, making it feel more natural and structured. However, both approaches return Promises and work under the same non-blocking model. In short, Promises are more flexible in certain use cases like parallel execution with Promise.all(), while async/await makes your code cleaner and easier to follow when you have sequential asynchronous logic.
+
+
+
+
+      example: for the results after using await
+
+    1)  const p1 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve("print p1");
+        }, 5000);
+      })
+
+      const p2 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve("print p2")
+        }, 10000);
+      }) 
+
+
+      async function handele() {
+
+        const valu1 = await p1;
+        console.log("hy");
+
+        const valu2 = await p2;
+        console.log("by");
+      }
+
+      handle();
+
+////console
+
+      => in above example output come like
+
+      after 5 seconds 
+
+          "print p1"
+          "hy"
+
+      then after 5 more seconds;
+
+          "print p2"
+          "by"
+
+      2) exmaple we revers the time like 
+
+          const p1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+              resolve("print p1");
+            }, 10000);
+          })
+
+          const p2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+              resolve("print p2")
+            }, 5000);
+          }) 
+
+
+          async function handele() => {
+
+              const valu1 = await p1;
+              console.log("hy");
+
+              const valu2 = await p2;
+              console.log("by");
+            }
+
+            handle();
+            
+
+
+
+            => in above example 
+
+                after 10 seconds;
+
+                it prints all data
+
+                "print p1"
+                "hy"
+                "print p2"
+                "by"
+
+
+
+        how async/await actually works ?
+
+        when js reaches an await it,
+
+        pauses the execution of the async function.
+
+        returns control back to the event loop.
+
+        the async function itsel return a pending promise at that moment
+
+        ones the awaited promise settles 
+
+        if it resolves, execution continues with the resolved value.
+
+        if it rejected, exectuion continoues by throwing an error at that line
+
+        ////////////
+                When await is encountered:
+
+                JS engine pauses the async function.
+
+                Waits for the awaited promise to resolve/reject.
+
+                Resumes execution after the promise settles.
+
+                Behind the scenes, it's just syntactic sugar over promises.
+                JS engine starts running the async function.
+
+                When it hits await, it pauses the function execution at that line.
+
+                In the meantime, the rest of your program continues (non-blocking).
+
+                Once the awaited promise resolves, JS resumes the async function from where it paused.
+
+        what are the different execution patterns while executing multiple promises ?
+
+            There are 3 diff execution pattern for the execution of promises in js
+                1.sequential : here each promise waits for the previous one to complete before starting .this is useful when operation depend on each others or must happens in order
+                eg : async function some(){
+                    await task1()
+                    await task2()
+                    await task3()
+                }
+
+                2.parallel execution : here all the promsie start at the same time  and run independently . resolved using promise.all() static method 
+                it is used when we want the fastest execution time(the response will be provided when the lengthiest process succed that will be the max time )
+
+                3.concurrent execution
+                        means multiple task are executed at the same by context switching , here it create a illusion of parallel execution of task but actually what happenign is js switching between multiple task rather than doing multiple task at the same time
+
+
+
+        what is a method in js 
+            a method is a function defined inside a object 
+                
+   
+        how fetch() works ?
+
+
+            fecth will always return a promise after making a network call and this promise can be resolved using .then() method using await keywords 
+            after resolving the fetch() we get a response and inorde to get actual data from the response we need to convert the rsult into readable foramt like json or something so to do that we got a method called res.json()
+            which is also a async funftion that convert the response of the fetch api result into a json object
+
+          ->  response object represents the HTTP response 
+                it contains things like
+
+                  .status - HTTP status code (200, 404, 500 etc).
+                  .ok - boolean.
+                  .header - final URL.
+                  .body - the actual response data stream.
+
+        example:
+
+        const data = await fetch("URL")  => this return a response data
+        const jsonValur = await data.json() => await is used for resolve
+
+
+      what is HTTP?
+
+      HTTP is hyper text transfer protocol
+
+      it is the protocol that defines how clinets and servers talk each other over a web
+
+      .when a fetch calls 
+
+      .the client(browser/JS) sends an HTTP request  to server.
+      .server processes the request and sends an HTTP response back.
+
+      HTTP request has 3 main parts:
+  
+      .method -> defines what action you want to do.
+      .Headers -> Metadata about the request 
+      .body(optional) -> Date you're sending (like from inputs, JSON)
+
+      methods:
+              GET, POST, PUT,PATCH, DELETE
+
+      HTTP Response
+
+        When the server replies, the response has:
+
+        .Status Code → Did it succeed or fail?
+
+        .Headers → Info about the response (content type, caching, etc.)
+
+        .Body → Actual data (JSON, HTML, text, image, etc.)
+
+      
+      server
+
+      .Run your server-side code 
+      .server is just a computer
+      .process the request
+      send back an HTTP
+
+
+
+        this keyword in js?
+
+                the value of this keyword is entire depends up on the way we call the functions
+                in nonstrict mode whenever the value of the 'this' keyword becomes null or undefined js will replace its value with the global object 
+                in nonstrict mode by default  the value of 'this' keyword will be undefined
+
+        -> this keyword in global space represent the global object.
+
+        why it happend?
+
+        this is beacuse of this substitution
+
+        if the value of this keyword is undefined or null.
+        this keyword will be replaced with globel object.
+        only in strict mode.
+
+        what is the value of this in a function?
+
+        it is undefined, in strict mode but , but it is not in strict mode this substitution take place.
+
+        => if in strict mode 
+            function x(){
+                console.log(this);
+            }
+
+            x();
+            window.x()
+
+            are same?
+
+        no => x() returns undifined and 
+              window.x() retruns global object
+
+        imp**
+
+            const obj = {
+                a: 10,
+                x: function() {
+                    console.log(this)
+                }
+            }
+
+            obj.x();
+
+            what it returns ?
+
+            in this this keyword returns the object
+            means in console {a: 10, x:f}
+
+            if it console.log(this.a)
+
+            it returns value of a => 10;
+            because 
+
+            this return object and object.a returns the value of a
+
+            ->in case of arrow function 
+            const obj2 = {
+                a:20,
+                x: function () {
+                    const y = () => {
+                        console.log(this)
+                    }
+                    y();
+                }
+            }
+            obj2.x();
+
+            it also returns object
+            means in console {a: 10, x:f}
+
+        what are call() and apply()?
+        -> 
+
+
+        🔹 call() and apply()
+
+        Both are methods of functions in JavaScript.
+        They are used to call a function, but also control what this means inside that function.
+
+        👉 So basically:
+
+        Normal call → function runs with its default this.
+
+        call/apply → you can decide what this should be.
+
+        🔹 Example 1: Without call or apply
+        function greet() {
+        console.log("Hello, I am " + this.name);
+        }
+
+        const person = { name: "Aswin" };
+
+        // Normal call
+        greet(); // "Hello, I am undefined" (because `this` is not person here)
+
+        🔹 Example 2: With call()
+        function greet(city) {
+        console.log("Hello, I am " + this.name + " from " + city);
+        }
+
+        const person = { name: "Aswin" };
+
+        // Using call: first argument = what `this` should be
+        greet.call(person, "Kozhikode");
+        // Output: Hello, I am Aswin from Kozhikode
+
+        🔹 Example 3: With apply()
+        function greet(city, country) {
+        console.log("Hello, I am " + this.name + " from " + city + ", " + country);
+        }
+
+        const person = { name: "Rahul" };
+
+        // apply is same as call, but arguments are passed as an ARRAY
+        greet.apply(person, ["Delhi", "India"]);
+        // Output: Hello, I am Rahul from Delhi, India
+
+        🔹 Key Difference
+
+        call(thisArg, arg1, arg2, ...) → arguments listed one by one.
+
+        apply(thisArg, [arg1, arg2, ...]) → arguments given as an array.
+
+        🔹 Real-world analogy
+
+        Imagine a function is like a tool (like a hammer).
+
+        Normally, it belongs to someone (default this).
+
+        With call/apply, you can borrow that tool and say:
+
+        “Hey function, pretend you belong to THIS person.”
+
+        ✅ So in short:
+
+        call → call function with a given this, pass arguments normally.
+
+        apply → same thing, but pass arguments as an array.
+
+
+        how to determine the value of this keyword ?
+            There are 4 main rules that help decide what this refers to in any function call:
+
+                        1. Implicit Binding
+                        When you call a function as a method on an object, 'this' refers to the object to the left of the dot.
+
+                        
+                      
+                        const user = {
+                        name: "Sam",
+                        greet() {
+                            console.log(this.name); // 'this' refers to 'user'
+                        }
+                        };
+
+                        user.greet(); // 'Sam'
+                        👉 Rule: When the function is called using dot notation, this points to the object before the dot.
+
+                        2. Explicit Binding
+                        You can explicitly tell a function what 'this' should be by using .call(), .apply(), or .bind().
+
+                        
+                        function greet() {
+                        console.log(this.name);
+                        }
+
+                        const person = { name: "Sam" };
+                        greet.call(person); // 'Sam'
+                        👉 Rule: When you use call, apply, or bind, 'this' is manually set to the first argument passed.
+
+                        3. New Binding
+                        When you use a constructor function with the new keyword, 'this' refers to the newly created object.
+
+                        function Person(name) {
+                        this.name = name;
+                        }
+
+                        const p1 = new Person("Sam");
+                        console.log(p1.name); // 'Sam'
+                        👉 Rule: In a constructor, 'this' refers to the new instance created by new.
+
+                        4. Default Binding
+                        If none of the above rules apply, then 'this' falls back to the global object (window in browsers, or global in Node.js). In strict mode ('use strict'), 'this' will be undefined.
+
+                   
+                        function greet() {
+                        console.log(this); // In non-strict: Window; In strict: undefined
+                        }
+
+                        greet();
+                        👉 Rule: If a function is called without any context, 'this' defaults to the global object, unless in strict mode.
+
+                        Bonus: Arrow Functions
+                        Arrow functions don't have their own 'this'. Instead, they inherit 'this' from the surrounding (lexical) scope.
+
+                       
+                        const obj = {
+                        name: "Sam",
+                        greet: () => {
+                            console.log(this.name);
+                        }
+                        };
+
+                        obj.greet(); // undefined, because 'this' is taken from outer scope, not 'obj'
+
+            its order of precedednce :
+                        new Binding
+                        explicit Binding
+                        implicit Binding
+                        default binding
+     
+            
+            classes are the syntatical sugars over prototypes
+              classes are more easier to understand than prototypes   
+              we can do inheritance with class using the extends keywords and super keyword which calls the constructor of the parent class.
+              constructor function classes etec all uses prototypes behins the scene.
+
+            what are constructor functions
+                constructor functions are regular functions , but when you call it with the new keyword it create and return a new object.
+            prototype in js ?
+
+                    every object ins js  has some hidden internal properties cqlled [[prototype]] which can be accessible by (.__proto__).
+                    this [[prototype]] points to another object , this another object is called as prototype.
+
+
+                    Imagine you're building robots. Each robot can do certain actions (like speak, walk, etc.). But instead of writing the instructions inside every robot, you write them in a blueprint.
+
+                        Every robot is an object.
+
+                        The blueprint it refers to is its prototype.
+
+                        If a robot doesn’t know how to do something (e.g. robot.dance()), it looks at its blueprint to see if the instruction is there.
+
+                        If the blueprint also doesn’t have it, it checks its blueprint.
+
+                        This chain continues — this is called the prototype chain.
+
+                            every clss or function ahs a prototype object like js create a empty prototype object fo rall the classes and function we creaet and the methods we creaet inside that class will be appended to that class and similarly to those function 
+
+                            and if we want all the instanece of that function or class to have a specfic property we can just define it using className.prototype.methodName
+
+                            adn ths will be available betwwen all the instanece of that class 
+
+                            if we try to access a method that is not deifned in the class it wil dirst look up in its own prototype object , like the one created by default and if it is not there it wil loook up its parent one which will be object.prototpye where the buil din methods are stored if it is not there also it will look up its parent which is null and eventually throws an error 
+
+                            we can access methods like some array.sort() or arrray.filter() beacuse simce we didnt define any method on the array object itself it will look up to its parent one Array.prototype and if it is not there it will look up its parent object.prototype and run the implementation that is written there and if we simpley write a method like sort on that array thie new definition will override the deafult one
+
+                                In JavaScript, every function and class has a special property called .prototype, which is an object. This object is used to define shared methods and properties that should be available to all instances created using that function or class (when used with new).
+
+                                So:
+
+                                When you create a class or a constructor function, JavaScript automatically creates an empty prototype object for it.
+
+                                Any method defined inside the class body is automatically added to the class's prototype.
+
+                                Similarly, with constructor functions, you can manually add shared methods like:
+                                            function Person(name) {
+                                                    this.name = name;
+                                                    }
+
+                                                    Person.prototype.sayHello = function() {
+                                                    console.log(`Hi, I'm ${this.name}`);
+                                                    };
+
+                                    All instances of that function/class will have access to these shared methods via the prototype chain.           
+
+                                        🔗 Prototype Chain (How JS looks up properties/methods)
+                                        When you try to access a property or method on an object:
+
+                                        JavaScript first checks the object itself.
+
+                                        If it's not found, it looks into its internal [[Prototype]] (often accessible as .__proto__).
+
+                                        This continues up the chain — from instance → constructor’s prototype → Object.prototype → null.
+
+                                        If the property is never found, undefined is returned (and errors if you try to call it as a function).
+
+            what is iterables and iterator ?    
+
+                an object which implement iterable protocals is cqlled iterable
+
+                for an object to be an iterable it musyt implemtnt a method at the key [sybol.iterator]
+                that method should not accpet any arguents and should return a object which conforms to iterator protocol
+                the iterator protocol decide whether a object is an iterator  
+                iterator protocol : the object must have a next method, that retuns an object with 2 property
+                    1.value : current elemenet
+                    2.done : boolesn vlue to indicate the end of elements
+                
+                string , array ,map , set are built in iterable 
+        =               
+            what are generator function in js? 
+
+                these are more simplified way to create iterables in js.
+                A generator function is a function you can pause and resume, using yield and .next(). It returns an iterator object, and gives you fine control over function execution — perfect for things like lazy data generation and custom iterators.
+
+                we define a generator function with an asterisk (*)
+               
+                    function* idGenerator() {
+                        let id = 1;
+                        while (true) {
+                            yield id++;
+                        }
+                        }
+
+                        const gen = idGenerator();
+
+                        console.log(gen.next().value); // 1
+                        console.log(gen.next().value); // 2
+                        console.log(gen.next().value); // 3
+                    This loop never ends — but since we only call .next() when we want a new value, it doesn’t blow up memory.
+  
+Some Important array  methods 
+               
+    1.filter() methods 
+         these are used to filter an array of elements based on a callback functions and will return the results as a new array 
+             return =>the callback function is executed once for each element , that call back function will return true or false and that element is included in the new array based on it return value
+              it wont affect the original array
+              after filtering an array this filter method will return a new array that pass this filter and while applying filter method to an array we are running a functions over each element of the element of the array and there it only return a true or false value and based on  that true or false value it will decide whether to selecet that element or not
+              the resultant array may not need to be as same length as that of the original one
+              eg:   let phones=['samsung','apple','redmi','vivo']
+                    const bigPhones=phones.filter((phone)=>{
+                        return phone.length>5
+                    }) 
+                    this will only contain phones thats length is bigger than 5
+    2.Map() methods : 
+
+        map methods are used to transform values of an array by appling a callback function and return a new array
+        it does not mutate the original array it just returns a new one
+            return => the map methods return a new array whose length must be same as that of the original one and the call back funtion will return value instead of true and false and the returned value is used to create new array
+
+    3.Find() method 
+
+        find method is used to find or return the first element from the array that satisfy the callback function until the match is found and if not return undefined
+            return => it return a single element after running a callback function on each element on the array 
+            so find () is like filter () but here only of return the first element of the filterred result 
+    
+    4.forEach() method :
+        this method is used to execute a callback on each element of an array mostly used for logging each element in an array,updating dom etc 
+        you cannot transform values of the array using forEach method and we cannot apply break,continue,return in forEach like we do in normal loop
+
+        return => it wont return anything 
+    
+    5.some() method
+        This  method is used to run a callback function for each elements of the array and it return a single boolean value only if atleast a single element passes the condition
+
+            return => (a boolean) it return true if any one of the elements inside the array satisfy that condition else false
+
+    6.every() method
+        This is similar to some() instead it return tha single value only if every element in the array satify the condition
+
+    7.reduce() method - kinda Important
+        this methods runs a callback function on each element in the array and return a single value after performing some computaion on the element
+        commonly used for summing value,multiplying ,building object etc
+        the syntax is also much diff the callback function takes 2 argument 
+            first one/accumulator (imp) - is the result of the previous iteration
+            2nd one is the each value of the array
+
+            and we can pass the initial value of the accumulator also as the second argument of the reduce() method but optional
+
+                eg : let phones=['samsung','apple','redmi','vivo']
+                     const bigPhones=phones.reduce((accumulator,phone)=>{
+                     return accumulator+" "+phone
+                      },'')
+    8. includes() method
+        This method accept a value and just check if present inside the array
+        optionally can  use the start index as the second parameter in that case it start to check in the array after that particluar start index 
+            return => return boolean if the element is there or not
+    9. sort()
+            this is used to sort the element in the array and the callback function can be used to sort the element in reverse order the callback function sort the lement based on 3 condition
+                if a==b no change in order
+                if a>b  b comes first or a>b then a-b is positive
+                if a<b a comes first or a<b then a-b is negative
+
+    10.indexOf()
+        return the index of the element that we pass to this method only if it is present , -1 if not
+        it only return the index of the first occurence of that element 
+        only work with simple array that include strings,booleans or numbers only and not with object
+    
+    11.lastIndexof()
+        return the index of the last occurence of the element that we passsed or else -1
+        only work with simple array that include strings,booleans or numbers only and not with object
+
+    12.findIndex() 
+        uses a callback function that run through every element that matches the condition and return the index of the first element that satisfy the condition
+        will work well with object also
+    
+    13.slice()
+        this will create a new after slicing the elements of the original array from the indexes we wanted 
+            array.slice() => just create a new array with same values as that of the original array but this new array is not a copy of the original one( both are differnt array with diff refernce but same values)
+            slice() takes 2 parameter 
+                    startIndex 
+                    noOfElements
+
+            slice create a shallow copy , create a new array with diff reference so changing one wont affect the other, but for objects inside the array changing one really affect the other
+                eg: let phones=[{name:'apple',cost:10},{name:'samsung',cost:10},{name:'vivo',cost:10}]
+                    const test=phones.slice()
+                    test[0].cost=15
+                    console.log(phones);
+                    console.log(test);
+ 
+                    here value inside phones also changes
+
+ 
+
+
+some array oprations
+
+        1.push()
+            to add some value to teh end of the array return length of array
+        2.unshift()
+            to add some values at the start of the array return length of array
+        3.pop()
+            to remove some values from the end of the array return the popped element also 
+        4.shift()
+            to remove some element from the start of the array return the removed element
+        5.splice (imp)
+            used to reduce one or more elements from an array splice method takes two arguments 
+            can be used to insert element or replace element from an array also in that case we can pass 3 arguments 
+            1st one => the index we want to remove
+            2nd one => no of elements we want to remove
+            3rd one => the element that need to be inserted in place of the seleectd one
+                eg:array.splice(2,0,[12,1])
+                this will insert the array [12,1] at index 2 of that original array
+        6.
+
+
+what is function curring?
+
+    breaking a function that takes multiple arguments into series of functions that each take one argument.
+
+    instead of:
+    add(1,2,3)
+
+    write add(1)(2)(3);
+
+    Example
+
+     normal function 
+
+     function add(a,b) {
+        retrun a + b;
+     }
+
+     console.log(add(1,4))
+
+    curried ////
+
+    function addCurry(a){
+        return function(b){
+            retrun a + b;
+        }
+    }
+
+    console.log(addCurry(2)(3))
+
+    use?
+
+    we can create specialozed functions.
+
+    funcction multiply(a) {
+        return function(b){
+            return a * b;
+        }
+    }
+
+    const double = multipy(2);
+
+    console.log(double(5)) => retuns 10;
+
+    real word application add tax to the bill
+
+    we can set the tax amount as fixed.
+
+
+
+shallow clone vs deep clone?
+
+🧠 2️⃣ Shallow Clone vs Deep Clone
+🔹 Shallow Clone:
+
+Makes a copy of the top level only, not nested objects.
+
+Example:
+
+const obj = { a: 1, b: { c: 2 } };
+const shallowCopy = { ...obj };
+
+
+Now:
+
+shallowCopy.b.c = 99;
+console.log(obj.b.c); // 99 😱
+
+
+Even though you used {...obj}, the nested object (b) is still shared between both.
+So both obj.b and shallowCopy.b point to the same inner object.
+
+That’s why we call it shallow — it copies only one level deep.
+
+
+🔹 Deep Clone:
+
+Makes a copy of everything, including nested objects — so the new copy is completely independent.
+
+Example:
+
+const obj = { a: 1, b: { c: 2 } };
+
+// deep clone
+const deepCopy = JSON.parse(JSON.stringify(obj));
+
+deepCopy.b.c = 99;
+
+console.log(obj.b.c);  // 2 ✅ original unchanged
+console.log(deepCopy.b.c); // 99
+
+
+Now they are truly separate objects in memory.
+
+
