@@ -1,0 +1,444 @@
+1. Tell me about yourself.
+Answer
+
+Good morning, sir/madam.
+
+My name is Akshay P V, i graduated my btech degree in computer engineering from government engineering college wayanad, with hand on experience as software developer intern at vonnue and also experienced as fullstack developer trainee in a verdante. i hav good in depth knowledge in js ans react and also skills in mern stack, next .js etc.
+
+During my internship, I worked on backend development using Node.js, Express.js, TypeScript, PostgreSQL, and MongoDB. I developed REST APIs, designed database schemas, and also collaborated on React.js frontend development.
+
+Apart from my internship, I enjoy building personal projects. One of my major projects is ApplyPilot AI, a microservices-based ATS Resume Builder developed using Next.js, Node.js, PostgreSQL, Docker, and an API Gateway. I have also developed an AI Test Case Generator and an Agriculture Education SaaS Platform.
+
+I'm passionate about learning new technologies and I'm looking for an opportunity where I can contribute while continuously improving my software development skills.
+
+
+
+
+2. Walk me through your resume.
+Answer
+
+
+I started my career as a Full Stack Developer trainee at Verdant Elevate while I was pursuing my B.Tech. During that period, where I worked on MERN stack applications and gained practical experience building REST APIs, implementing JWT authentication, and working with MongoDB.
+
+Later, I joined Vonnue Innovations as a Software Engineering Intern. There I mainly worked on backend development using Node.js, Express.js, PostgreSQL, and TypeScript. I built REST APIs, optimized SQL queries, designed database schemas, and collaborated using Git and Agile practices.
+
+Alongside my professional experience, I built several personal projects like ApplyPilot AI, AI Test Case Generator, and an Agriculture Education SaaS Platform to strengthen my understanding of backend development and modern web technologies.
+
+
+
+3. Explain your internship.
+Answer
+
+During my internship at Vonnue Innovations, I worked mainly on backend development.
+
+My responsibilities included developing REST APIs using Node.js and Express.js, writing SQL queries, designing PostgreSQL and MongoDB schemas, optimizing database performance, fixing bugs, and integrating APIs with the frontend.
+
+I also collaborated with frontend developers, participated in Agile meetings, used Git for version control, and wrote Jest test cases to improve application stability.
+
+
+
+4. What was one feature you implemented?
+Answer
+
+One of the tasks I worked on was developing REST APIs for the application's backend.
+
+For one feature, I had to create APIs that allowed users to retrieve, create, update, and delete records from the database.
+
+I first understood the business requirements, then designed the database schema using Prisma with PostgreSQL. After that, I implemented the API endpoints in Express.js, added input validation, handled errors properly, and tested the APIs using Postman.
+
+Once the APIs were ready, I coordinated with the frontend developer to integrate them. During testing, I fixed a few issues related to validation and response formatting.
+
+This task improved my understanding of API design, database interactions, and backend development.
+
+
+
+
+5. what's that feature? 
+Answer
+
+One of the features I worked on was the Employee Status module.
+
+The application needed to track the current status of employees, such as Active, On Leave, Resigned, or Terminated.
+
+My task was to develop the backend REST APIs for this feature. I first understood the business requirements and reviewed the database schema. Then I created the required API endpoints using Node.js and Express.js.
+
+I implemented APIs to retrieve employee status details, update an employee's status, and fetch employees based on their current status. I also added input validation, proper error handling, and appropriate HTTP status codes.
+
+After completing the APIs, I tested them using Postman and worked with the frontend developer to integrate them into the application. During testing, I fixed a few validation and response formatting issues to ensure the APIs behaved consistently.
+
+Through this task, I gained practical experience in REST API development, backend validation, database operations, and collaborating with frontend developers.
+
+
+
+
+
+6. Which project are you most proud of?
+Answer
+
+The project I'm most proud of is ApplyPilot AI.
+
+It's a microservices-based ATS Resume Builder that allows users to upload resumes, optimize them for specific job descriptions using AI, and generate ATS-friendly PDF resumes.
+
+I designed the backend architecture using multiple services connected through an API Gateway. I also implemented JWT authentication, Docker containerization, PostgreSQL with Prisma ORM, and integrated Groq AI for resume optimization.
+
+This project significantly improved my understanding of scalable backend architecture and API design.
+
+
+
+7. Why did you choose React?
+Answer
+
+I like React because it allows us to build reusable components, making applications easier to maintain and scale.
+
+React's component-based architecture, virtual DOM, and large ecosystem enable faster development. I've used React in several projects to build responsive and interactive user interfaces.
+
+
+
+8. Tell me about a mistake you made.
+Answer
+
+During one of my projects, I accidentally pushed my .env file to GitHub.
+
+As soon as I noticed it, I revoked the exposed credentials, generated new API keys, removed the file from Git history, and updated the repository.
+
+Since then, I always double-check my commits and ensure sensitive files are excluded using .gitignore.
+
+This experience taught me the importance of secure development practices.
+
+
+
+
+9. Why do you want to join our company?
+Answer
+
+I'm looking for a company where I can continue learning while contributing to real-world projects.
+
+Your organization focuses on modern web technologies like React, Node.js, REST APIs, and Agile development, which align well with my skills and interests.
+
+I believe this role will help me grow as a software engineer while allowing me to make meaningful contributions to the team.
+
+
+
+10. Why should we hire you?
+Answer
+
+I have practical experience with many of the technologies mentioned in your job description, including React.js, Node.js, Express.js, REST APIs, PostgreSQL, MongoDB, Git, and TypeScript.
+
+I also enjoy learning new technologies and building projects outside of work, which has helped me gain hands-on experience with Docker, API Gateway, microservices, and AI integrations.
+
+I believe my technical foundation, willingness to learn, and positive attitude would allow me to contribute effectively as a fresher.
+
+
+
+11. How do you handle pressure?
+Answer
+
+I stay calm and focus on prioritizing tasks based on their importance.
+
+During my internship, when deadlines were tight, I broke the work into smaller tasks, communicated regularly with my teammates, and completed the most critical functionality first.
+
+This approach helped me deliver quality work on time.
+
+
+
+12. Where do you see yourself in five years?
+Answer
+
+In five years, I hope to become a skilled software engineer capable of designing scalable applications and contributing to technical decisions.
+
+I also want to deepen my knowledge of cloud technologies, system design, and distributed systems while mentoring junior developers.
+
+
+13. What is your biggest strength?
+Answer
+
+One of my biggest strengths is my curiosity and willingness to learn.
+
+Whenever I encounter a technology I don't know, I take the initiative to learn it through documentation and hands-on projects.
+
+This habit has helped me quickly gain practical experience with technologies like Docker, Next.js, PostgreSQL, and AI integration.
+
+
+
+
+14. What is your weakness?
+Answer
+
+Earlier, I sometimes focused too much on perfecting a solution before moving on.
+
+Over time, I realized that delivering a well-tested solution on time and improving it through iterations is often more effective.
+
+Now I focus on balancing quality with timely delivery.
+
+
+
+
+15. Do you have any questions for us?
+
+Always ask at least one thoughtful question:
+
+Thank you for the opportunity. I have a few questions:
+
+What technologies and frameworks does the team primarily use on a day-to-day basis?
+What would be the expectations for someone joining as an Assistant Software Engineer during the first three months?
+Does the company provide opportunities for learning new technologies or certifications?
+
+
+
+16. Explain one difficult bug you fixed.
+Answer
+
+Use a real experience you've discussed before:
+
+While working on my project, I encountered an issue where the server threw an "ERR_HTTP_HEADERS_SENT" error.
+
+After debugging, I found that multiple responses were being sent from the same Express route because there was a missing return statement after sending the first response.
+
+I corrected the response flow and tested different scenarios to ensure only one response was sent for each request.
+
+This experience reinforced the importance of carefully handling request-response logic in Express.
+
+
+
+
+for understanding 
+--------------------||
+
+The Error
+Error [ERR_HTTP_HEADERS_SENT]:
+Cannot set headers after they are sent to the client
+What does this mean?
+
+Every HTTP request should receive only one response.
+
+For example:
+
+res.json({ message: "Success" });
+
+Once Express sends this response, the request is finished.
+
+If your code later executes another response like:
+
+res.status(500).json({ message: "Error" });
+
+Express throws:
+
+ERR_HTTP_HEADERS_SENT
+
+because it already sent the response headers.
+
+A Simple Example
+
+Imagine this route:
+
+app.get("/user/:id", async (req, res) => {
+
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+        res.status(404).json({
+            message: "User not found"
+        });
+    }
+
+    res.status(200).json(user);
+
+});
+
+Suppose the user doesn't exist.
+
+Execution goes like this.
+
+if (!user)
+
+↓
+
+res.status(404).json(...)
+
+The response is sent.
+
+But JavaScript doesn't stop here.
+
+It continues.
+
+↓
+
+res.status(200).json(user)
+
+Now Express tries to send another response.
+
+Boom.
+
+ERR_HTTP_HEADERS_SENT
+How to Fix It
+
+Simply return.
+
+if (!user) {
+    return res.status(404).json({
+        message: "User not found"
+    });
+}
+
+res.status(200).json(user);
+
+Now after sending the 404 response, the function exits.
+
+No second response.
+
+
+
+
+
+17. What is your biggest strength?
+Answer
+
+One of my biggest strengths is my curiosity and willingness to learn.
+
+Whenever I encounter a technology I don't know, I take the initiative to learn it through documentation and hands-on projects.
+
+This habit has helped me quickly gain practical experience with technologies like Docker, Next.js, PostgreSQL, and AI integration.
+
+
+
+
+
+=> ApplyPilot
+--------------- 
+
+ApplyPilot AI is a microservices-based ATS Resume Builder that helps users optimize their resumes for specific job descriptions using AI.
+
+The workflow starts when the user logs in, and the Auth Service issues a JWT token. The user then uploads their resume, which is stored in MinIO, while the file metadata is saved in PostgreSQL using Prisma.
+
+Next, the user enters a job description. The request goes through the API Gateway to the AI Service, where the Groq AI model analyzes both the resume and the job description and generates optimized resume content.
+
+Finally, the optimized content is inserted into a LaTeX template, compiled into an ATS-friendly PDF, stored in MinIO, and the user receives a secure download link.
+
+One-line version (30 seconds)
+
+The user logs in, uploads a resume, and enters a job description. The AI optimizes the resume based on the job requirements, the content is converted into an ATS-friendly PDF using LaTeX, and the user securely downloads the generated resume.
+
+
+
+
+=> AI testcase generator 
+-----------------------------
+
+The AI Test Case Generator helps developers automatically generate test cases from JavaScript or TypeScript code using AI.
+
+The workflow starts when the user uploads or pastes their code. The backend receives the code and parses it into an Abstract Syntax Tree (AST) using Babel to understand the code structure, such as functions, parameters, and conditions.
+
+The parsed information, along with the source code, is sent to an LLM, which generates relevant test cases. These test cases are then executed in a sandboxed Jest environment to verify that they work correctly.
+
+Finally, the generated test cases and their execution results are returned to the React frontend, where the user can review them.
+
+30-second version
+
+The user submits JavaScript or TypeScript code. The backend parses it into an AST using Babel to understand the code structure, sends it to an AI model to generate test cases, executes them safely in a sandboxed Jest environment, and finally displays the generated test cases and results on the frontend.
+
+
+
+
+=> Rag chatbot 
+----------------
+
+The RAG Property Chatbot is an AI-powered chatbot that answers users' questions based on property and tenant documents instead of giving generic AI responses.
+
+The workflow starts by processing the property documents. These documents are split into smaller chunks, converted into vector embeddings, and stored in PostgreSQL using pgvector.
+
+When a user asks a question, the application converts the question into an embedding and performs a similarity search to find the most relevant document chunks. Those relevant chunks are then sent to the AI model as context, allowing it to generate an accurate answer based on the uploaded documents.
+
+Finally, the response is streamed back to the user in real time through the chat interface.
+
+30-second version
+
+The application processes property documents and stores them as vector embeddings in PostgreSQL using pgvector. When a user asks a question, it searches for the most relevant document content and sends it to the AI model as context. The AI then generates an accurate response, which is streamed back to the user in real time.
+
+
+=> Agriculture Education Platform
+--------------------------------------
+
+
+The Agriculture Education SaaS Platform is a MERN-based application that provides online courses, mock exams, and secure payment functionality for students.
+
+The workflow starts when a user registers as a student, instructor, or admin. Authentication is handled using JWT, and Role-Based Access Control (RBAC) ensures that each user can access only the features permitted for their role.
+
+Instructors can create and manage courses, while students can browse and enroll in them. When a student purchases a course, the backend creates a Razorpay order, and after the payment is completed, the backend verifies the payment signature before granting access to the course.
+
+Once enrolled, students can access course materials, take mock exams, and view their results, while instructors can monitor student progress.
+
+30-second version
+
+The platform allows instructors to create courses and students to enroll in them. Authentication is implemented using JWT and RBAC. Students purchase courses through Razorpay, and the backend verifies the payment before granting access. After enrollment, students can access course content, take mock exams, and view their results.
+
+
+
+
+1. ApplyPilot AI
+Question:
+
+What was the most difficult challenge while building this project?
+
+Answer
+
+One of the biggest challenges was generating a professional ATS-friendly PDF from AI-generated content.
+
+Since the AI generates dynamic content, the length and formatting could vary for every user. I had to ensure that this content was correctly inserted into the LaTeX template without breaking the document structure. I also had to handle special characters that could cause LaTeX compilation errors.
+
+I solved this by creating reusable LaTeX templates, sanitizing the generated content before inserting it, and testing the output with different resume formats.
+
+This helped me understand document generation pipelines and how to handle dynamic content reliably.
+
+
+
+
+2. AI Test Case Generator
+Question:
+
+What was the most difficult part?
+
+Answer
+
+The biggest challenge was generating meaningful test cases instead of generic ones.
+
+If I sent only the raw source code to the AI model, the generated tests were often inaccurate.
+
+To improve the results, I parsed the code into an Abstract Syntax Tree (AST) using Babel. This allowed the AI to understand the structure of the code, such as functions and conditions, and generate more relevant test cases.
+
+This experience taught me the importance of preprocessing data before sending it to an AI model.
+
+
+
+
+3. RAG Property Chatbot
+Question:
+
+What was the biggest challenge?
+
+Answer
+
+The biggest challenge was improving the accuracy of the chatbot's responses.
+
+Initially, the AI sometimes returned generic answers because it wasn't retrieving the most relevant document content.
+
+I improved this by splitting documents into smaller chunks and using pgvector for similarity search. This ensured that only the most relevant information was provided to the AI model as context.
+
+As a result, the chatbot generated much more accurate and context-aware responses.
+
+
+
+
+4. Agriculture Education SaaS Platform
+Question:
+
+What was the biggest challenge?
+
+Answer
+
+The biggest challenge was implementing secure payment processing with Razorpay.
+
+Initially, I thought it was enough to check the payment status on the frontend, but I learned that frontend responses cannot be trusted because they can be manipulated.
+
+I implemented backend payment signature verification using Razorpay's SDK before granting course access.
+
+This helped me understand secure payment workflows and the importance of validating transactions on the server side.

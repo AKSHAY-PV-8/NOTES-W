@@ -266,9 +266,146 @@ what is a module ?
         2. Built-in modules - modules that node.js ships with out of the box
         3. Third party modules - Modules written by other developers that we can use in out application 
 
-        sdfs dsdsdf sdf sdf sdf sd ssdf das sd sfdsddddsdfsdfdf sd f
+
+what is streams ?
+
+         stream in Node.js is a way of process data piece by piece (chunks) instead of loading the entire  data 
+         into memory at once. 
+
+         A stream in Node.js is a way to process data continuously in small chunks instead of loading the entire data 
+         into memory at once. This makes applications more memory-efficient and faster, especially when working with 
+         large files, network communication, or real-time data.
+
+   Type of stream
+
+   =>> Node.js has four main stream types.
 
 
+        1. Readable stream 
+           -Reads data.
+
+           example: 
+                .fs.createReadStream()
+        2. Writeable stream 
+           -Writes data. 
+
+           example: 
+                .fs.createWriteStream()
+
+
+        const fs = require("fs");
+
+        const stream = fs.createWriteStream("output.txt");
+        stream.write("Hello");
+        stream.write("Node.js");
+        stream.end();
+
+
+        3. Duplex stream 
+         - can read and write
+
+         example: 
+          . TCP sockets
+          . Some network connections 
+
+        
+        4. Transform stream 
+         - reads data, modifies it, then writes the transformed data. 
+
+
+=> Piping Streams
+
+        One of the most powerful features is piping.
+
+        Instead of manually reading and writing:
+
+                readStream.on("data", (chunk) => {
+                writeStream.write(chunk);
+                });
+
+        You simply write:
+
+                const fs = require("fs");
+
+                const read = fs.createReadStream("input.txt");
+                const write = fs.createWriteStream("output.txt");
+
+                read.pipe(write);
+
+        Flow:
+
+                input.txt
+                │
+                ▼
+                Readable Stream
+                │
+                ▼
+                Writable Stream
+                │
+                ▼
+                output.txt
+
+        Node automatically:
+
+        Reads chunks.
+        Writes chunks.
+        Handles backpressure (slowing the producer if the consumer can't keep up).
+        Closes streams when done.
+
+
+=> Streams in HTTP
+
+        Streams are heavily used by HTTP servers.
+
+                const http = require("http");
+                const fs = require("fs");
+
+                http.createServer((req, res) => {
+                const stream = fs.createReadStream("video.mp4");
+
+                stream.pipe(res);
+                }).listen(3000);
+
+        Flow:
+
+                Video File
+                │
+                ▼
+                Readable Stream
+                │
+                ▼
+                HTTP Response
+                │
+                ▼
+                Browser
+
+       -> The browser starts playing the video while it's still being sent—no need to wait for the entire file.
+
+
+What is Buffer? 
+        A Buffer is a temporary memory area in Node.js used to store binary data. It allows Node.js to 
+        handle raw bytes directly because JavaScript itself doesn't have a built-in way to work with 
+        binary data.
+
+why do we need BUffer ? 
+        JavaScript was originally designed for browsers, where most data is text.
+
+        For example:
+                const name = "Nami";
+
+        This is a string.
+
+        But computers also work with:
+
+        Images
+        Videos
+        PDFs
+        Audio
+        ZIP files
+        Network packets
+        These are binary data, not plain text.
+        
+        Node.js uses Buffer to store this binary data.
 
 
 
