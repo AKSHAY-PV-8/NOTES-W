@@ -1,0 +1,118 @@
+1. why do you choose Node.js ? 
+
+    node.js uses google's V8 JavaScript engine and an event-driven non-blocking i/o model .
+
+    Instead of creating one thread per request, Node.js uses an Event Loop that efficiently handles thousands of concurrent I/O operations.
+
+NOTES
+
+    What is "Event-Driven, Non-Blocking I/O"?
+
+        1. Blocking vs Non-Blocking I/O
+        I/O = Input/Output operations — reading a file, querying a database, making a network request, reading user input, etc. These are slow compared to CPU operations because they involve waiting (for disk, network, etc.)
+
+        Blocking I/O (traditional way):
+
+            Request comes in → Read file from disk → [Everything STOPS and waits] → File read done → Send response
+
+            The program halts and does nothing else until that operation finishes. If 1000 users request a file at once, and each takes 1 second, a blocking server handling one-at-a-time would take forever unless it spins up 1000 threads (one per request) — which is expensive in memory/CPU.
+
+        Non-Blocking I/O (Node.js way):
+
+            Request comes in → Start reading file → [Don't wait! Move to next task] → ... → When file is ready, come back and handle it
+
+            The program doesn't wait. It fires off the I/O operation, moves on to handle other requests, and gets notified later when that operation is done.
+
+        2. Event-Driven
+            This means the program's flow is controlled by events (things that happen) rather than executing top-to-bottom and waiting at each step.
+
+            "File read completed" → event fired → run the callback function for it
+            "New HTTP request arrived" → event fired → run its handler
+            "Database query returned" → event fired → run the callback
+
+            Node.js sits in a loop, constantly listening: "Did anything finish? Did any event occur? If yes, run the corresponding function."
+
+
+        Why do we call Node.js "event-driven"?
+            Because the entire flow of a Node.js program is controlled by events, not by a fixed top-to-bottom sequence of steps.
+
+
+
+2. Difference between process.nextTick(), Promise.then(), setImmediate(), setTimeout() ?
+
+
+    First, the basic problem these solve
+        JavaScript runs on one thread. Sometimes you don't want a piece of code to run right now — you want it to run later, after something else finishes. These four things — process.nextTick(), Promise.then(), setTimeout(), setImmediate() — are all different ways of saying "run this later", but "later" means something slightly different for each one.
+
+    =>>> After every synchronous operation on the call stack finishes, Node first fully drains the process.nextTick() queue, then fully drains the microtask queue (which is where Promise.then() callbacks go). Only after both of these are completely empty does the event loop move on to macrotasks — which is where setTimeout() and setImmediate() live, in the timers and check phases of the event loop respectively.
+    So the priority order is: process.nextTick() → Promise.then() → setTimeout() → setImmediate()."
+
+    Why does process.nextTick() have the highest priority?
+
+        process.nextTick() isn't actually part of the standard event loop phases at all — it's a special Node.js-only queue that gets processed immediately after the current operation completes,
+
+
+
+4. Explain Middleware.?
+
+    A function that runs before your route handler, with access to req, res, and next.
+
+    -> A route handler is the function that actually responds to a specific request — it's the final destination after any middleware has run.
+
+                                    
+    Purpose      
+        Middleware  : Do  something before the final response (check auth, log, validate)
+        Route Handler: Actually handle the request and send a response
+
+
+5. Difference between app.use() and app.get()?
+
+    app.use()
+
+    Runs for every HTTP method.
+    Used for middleware.
+
+    app.get()
+
+    Only handles GET requests.
+
+
+
+6. explain jwt authentication? 
+
+    JWT (JSON Web Token) is a way to verify a user's identity without storing session data on the server — it's stateless.
+
+    How it works (flow)
+    1. User logs in (sends username/password)
+            ↓
+    2. Server verifies credentials → creates a JWT → sends it back
+            ↓
+    3. Client stores the JWT (usually in localStorage or a cookie)
+            ↓
+    4. On every future request, client sends JWT in the header:
+    Authorization: Bearer <token>
+            ↓
+    5. Server verifies the token's signature → if valid, allows access
+
+
+7. difference between Token and Cookie ?
+
+    ->token: A token is just a piece of data (usually a long string) that   represents proof of identity or permission.
+
+    ->A cookie is a small piece of data that the browser automatically stores and automatically sends back to the server with every request to that domain
+
+    note : 
+        "httpOnly cookie" is just a delivery mechanism for the JWT — instead of the server sending the token in the response body for JS to manually store and attach, it sends the token via Set-Cookie with the httpOnly flag, so the browser automatically stores it and sends it back on every request, and your JavaScript can never read or touch it — protecting against theft via XSS.
+
+
+8. Difference between Authentication and Authorization?
+
+    Authentication
+
+    Who are you?
+
+    Authorization
+
+    What are you allowed to do?
+
+
