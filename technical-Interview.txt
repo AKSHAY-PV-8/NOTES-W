@@ -116,3 +116,59 @@ NOTES
     What are you allowed to do?
 
 
+9. What is RBAC (Role-Based Access Control)? 
+
+    "RBAC means access control is based on a user's role rather than checking individual users — each role has a defined set of permissions, and middleware checks the logged-in user's role (usually stored in the JWT) against what's required for that route, before allowing access."
+
+
+10 Why PostgreSQL instead of MongoDB?
+
+    "I'd choose PostgreSQL when data has strong relationships and needs ACID-compliant transactions — like e-commerce orders linked to users and products. I'd choose MongoDB when the schema is flexible or evolving, and I need fast horizontal scaling — like storing logs, activity feeds, or content with varying structure."
+
+    The core difference
+    PostgreSQL = relational database (data in tables, with rows/columns, connected via relationships)
+    MongoDB = document database (data stored as flexible JSON-like documents)
+
+11 Explain Indexing ? 
+
+    "An index is a separate, sorted data structure — usually a B-tree — that lets the database locate rows quickly without scanning the entire table. It significantly speeds up read queries, but adds overhead to write operations since the index must be updated on every insert/update/delete, so indexes should be added selectively on frequently queried columns."
+
+        An index is a separate data structure that lets the database find rows quickly, instead of checking every single row one by one.
+
+        The problem without an index
+        SELECT * FROM users WHERE email = 'john@example.com';
+
+        ->Without an index, the database does a sequential scan — checks row 1, row 2, row 3... all the way through, until it finds matches.
+
+        1 million rows → check each one → SLOW
+
+        If your table has 1 million rows, that's potentially 1 million checks for one query.
+
+        ->With an index
+
+        An index is like the index page of a book — instead of reading every page to find a topic, you jump straight to the page number.
+
+        CREATE INDEX idx_email ON users(email);
+
+        Now, the database builds a separate structure (commonly a B-tree) that's sorted and optimized for fast lookup. Instead of scanning all rows, it can jump almost directly to the matching row.
+
+
+12 What is Normalization? ? 
+
+    The process of organizing data into multiple related tables to reduce redundancy (avoid storing the same data repeatedly) and keep data consistent.
+
+
+Migrations = version-controlled scripts that change your database structure (schema) over time — like Git for your database.
+
+Transactions — what it is
+Transactions = grouping multiple database operations so they all succeed together, or all fail together — no in-between/partial state.
+
+
+13 How did you improve API response by 25%?
+
+    I analyzed slow SQL queries using PostgreSQL's EXPLAIN ANALYZE, added indexes on frequently filtered columns, avoided unnecessary SELECT *, optimized JOIN operations, and reduced repeated database queries. These changes reduced query execution time, which improved overall API response time by around 25%.
+
+
+14 Why Microservices?
+
+    "Microservices split an application into small, independently deployable services — each responsible for one business capability. This allows scaling only the services that need it, deploying changes without affecting the whole system, isolating failures so one crashing service doesn't take everything down, and keeping each codebase small enough to maintain easily."
