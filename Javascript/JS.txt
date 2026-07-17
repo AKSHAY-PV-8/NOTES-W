@@ -576,8 +576,8 @@ what is closure ?
 
         disadvantage of closure
                 every time a closure is formed it consumes a lot of memory and some time the closed variables are not garbage collected.
-                - closed variables are veriable that are remember by inner function , even after outerfunction is finished or closed.
-                closure consume memory since it retain the refernce of the outer variables.
+                - closed variables are variable that are remember by inner function , even after outer function is finished or closed.
+                closure consume memory since it retain the reference of the outer variables.
 
 what are the real use of curring?
 
@@ -630,7 +630,7 @@ what are the real use of curring?
             in above code 
             var is function-scoped, not block-scoped.
             All 5 timeouts would print 5 after 0,1,2,3,4 seconds, because there’s only one i shared.
-            use let instead of var to get corret answer
+            use let instead of var to get correct answer
 
             this one work as we expected and it does beacuse now i is block scoped variable and for each iteration we get a unique variable i with its own memory and refernce so each setTimeout function is getting its own variable and will be able to Print diff values or like it has to work
 

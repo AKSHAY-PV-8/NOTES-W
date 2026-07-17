@@ -351,7 +351,20 @@ Q: What if Groq's API is down or rate-limited?
 
     "Currently that would fail the request. A production improvement would be retry logic with exponential backoff, and possibly a fallback to a secondary LLM provider."
 
+Q: How would this scale if 10,000 users used it at once?
 
+    "The stateless services (Auth, Gateway) could scale horizontally easily behind a load balancer. The AI Generation step is the likely bottleneck since it depends on external API latency — I'd move that to an async queue-based flow (e.g., RabbitMQ) so requests don't block, and the user gets notified when their PDF is ready instead of waiting synchronously."
+
+Q: Why didn't you use Kubernetes instead of just Docker Compose?
+
+    "Docker Compose was enough for local development and a small-scale deployment. Kubernetes would make sense at a larger scale needing auto-scaling, self-healing, and multi-node orchestration — but it adds operational complexity that isn't justified for a project at this stage."
+
+Q: What's a limitation of your current design you'd want to fix?
+
+    Good to have 1-2 honest answers ready — shows self-awareness:
+
+    "Service-to-service communication is synchronous right now — an async/event-driven approach would make it more resilient."
+    "I don't currently have retry logic for the Groq API call — if it fails, the request just fails."
 
 => AI testcase generator 
 -----------------------------

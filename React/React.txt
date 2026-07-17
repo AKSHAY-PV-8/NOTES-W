@@ -31,6 +31,7 @@ REACT
             🧱 2. DOM — The Root of the Problem
 
 
+
 5.what is DOM ?
               dom stands for Document Object MOdel.
               => it's a programing inferface() that represents the HTML page as tree of objects
