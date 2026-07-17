@@ -172,3 +172,94 @@ Transactions = grouping multiple database operations so they all succeed togethe
 14 Why Microservices?
 
     "Microservices split an application into small, independently deployable services — each responsible for one business capability. This allows scaling only the services that need it, deploying changes without affecting the whole system, isolating failures so one crashing service doesn't take everything down, and keeping each codebase small enough to maintain easily."
+
+
+15 Why API Gateway? ?
+
+    A single entry point that sits in front of all your microservices. Instead of clients calling each microservice directly, they call the Gateway, which then routes the request to the right service internally.
+
+
+    The 5 responsibilities, explained
+    1. Routing
+
+    Gateway looks at the request path and forwards it to the correct service.
+
+    /users/*    → Users Service
+    /orders/*   → Orders Service
+    /payments/* → Payments Service
+    2. Authentication
+
+    Gateway checks the JWT/token once, at the entry point — individual services don't need to repeat this logic.
+
+    Client → Gateway (checks token) → if valid → forward to service
+    3. Rate Limiting
+
+    Gateway can block a client if they send too many requests too fast — protects backend services from being overwhelmed.
+
+    "Max 100 requests per minute per user" — enforced centrally
+    4. Logging
+
+    All incoming requests pass through one place, making it easy to log/monitor everything centrally, instead of collecting logs from 10 different services separately.
+
+    5. Request Aggregation
+
+    Sometimes a client needs data from multiple services in one response. The Gateway can call multiple services internally and combine the results into a single response — so the client doesn't need to make 3 separate calls.
+
+
+16 Communication between Microservices?
+
+    Two methods:
+
+    Synchronous : The caller waits for a response before continuing — like a phone call.
+
+    REST API
+    gRPC
+
+    Asynchronous : The caller doesn't wait — it sends a message and moves on. Another service picks it up whenever it's ready.
+
+    RabbitMQ
+    Kafka
+    Redis Pub/Sub
+
+
+17 why Docker? 
+
+    Docker packages the application along with its dependencies, ensuring it runs consistently across development, testing, and production environments.
+
+18  Difference between Docker Image and Container?
+
+    Image = the recipe (blueprint)
+    Container = the actual dish you cooked from that recipe (running instance)
+
+    "An image is a read-only blueprint containing the application code, dependencies, and configuration needed to run it. A container is a running instance of that image — you can create multiple containers from the same image, and each one runs independently, isolated from the others."
+
+
+19 is you familear with pipeline? if i told you write a pipeline can you write? 
+
+    project has a real pipeline (AI Generation → LaTeX Template → PDF Compilation → MinIO Storage)
+
+    "Yes — actually, in ApplyPilot AI, I built a multi-step processing pipeline for resume generation. The flow is: resume + job description go into the AI service, Groq AI returns optimized content, that content gets injected into a LaTeX template, the template is compiled into a PDF, and the final PDF is uploaded to MinIO with a secure link returned to the user. Each step depends on the previous one succeeding, and I handled errors at each stage so a failure in one step doesn't leave things in a broken state."
+
+
+20 What is sql injection ? 
+
+    An attack where a hacker inserts malicious SQL code into an input field (like a login form), tricking your database into running commands you never intended.
+
+
+
+Next.js 
+-------
+
+1. What is Next.js and why would you use it over plain React?
+
+    React is a library for building UI components. Next.js is a framework built on top of React that adds routing, multiple rendering strategies like SSR and SSG, and performance optimizations out of the box 
+
+
+2  What's the difference between the Pages Router and the App Router?
+
+    
+
+
+
+
+One of the bigger challenges was the LaTeX PDF pipeline — getting AI-generated, variable-length content to render reliably into a fixed LaTeX template without breaking formatting, especially with special characters that LaTeX treats as syntax. I solved that by sanitizing/escaping AI output before injecting it into the template, and validating the generated .tex file compiles before returning it to the user. Another challenge was securing file access — instead of exposing MinIO directly or proxying every file through my API, I used presigned URLs with short expiry times, so files stay private but the client can still access them directly and efficiently."

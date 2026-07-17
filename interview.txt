@@ -300,6 +300,11 @@ Whenever I encounter a technology I don't know, I take the initiative to learn i
 This habit has helped me quickly gain practical experience with technologies like Docker, Next.js, PostgreSQL, and AI integration.
 
 
+18. what is you salary expectation ?
+
+"Based on my research and the skills and experience I bring,  I'd expect a range of ₹4.5 to ₹5 LPA. But I'm open to discussing the fair pay this role offers."
+
+
 
 
 
@@ -314,10 +319,37 @@ Next, the user enters a job description. The request goes through the API Gatewa
 
 Finally, the optimized content is inserted into a LaTeX template, compiled into an ATS-friendly PDF, stored in MinIO, and the user receives a secure download link.
 
-One-line version (30 seconds)
 
-The user logs in, uploads a resume, and enters a job description. The AI optimizes the resume based on the job requirements, the content is converted into an ATS-friendly PDF using LaTeX, and the user securely downloads the generated resume.
+Q: Why microservices instead of a monolith for this project?
 
+    "Even though this is a smaller project, I wanted to practice real-world architecture 
+
+Q: How do your services communicate with each other?
+
+    Requests come in through the API Gateway, which routes to the appropriate service
+
+
+Q: What happens if the AI Generation service is down when a user submits a job description?
+
+    "Currently the request would fail and the user gets an error. A more robust version would use a message queue like RabbitMQ, so the request queues up and processes when the service is back
+
+
+Q: Why Prisma instead of writing raw SQL?
+
+    "Prisma gives type safety, auto-generated types matching my schema, and handles migrations cleanly — reduces bugs from manually writing SQL and keeps schema changes version-controlled across environments."
+
+Q: How does Groq AI actually generate the optimized content? What's the prompt like?
+
+    I send the resume content and job description to Groq's LLM with a structured prompt asking it to rewrite/reorganize the resume to emphasize relevant skills and keywords from the JD, while keeping the information  accurate — not fabricating experience."
+
+
+Q: How do you make sure the AI doesn't fabricate false information on the resume?
+
+    "The prompt explicitly instructs the model to only reorganize/rephrase existing content and match relevant keywords, not invent new experience. 
+
+Q: What if Groq's API is down or rate-limited?
+
+    "Currently that would fail the request. A production improvement would be retry logic with exponential backoff, and possibly a fallback to a secondary LLM provider."
 
 
 
