@@ -1,0 +1,139 @@
+What is jave ? 
+    => Java is a high-level, object-oriented programming language developed by Sun Microsystems (released in 1995), now owned by Oracle.
+
+=: Java is platform independent
+
+    How it works:
+
+        =>You write Java code in a .java file
+
+        =>The Java compiler (javac) compiles it into bytecode (.class file) — not machine code
+
+        =>This bytecode is not tied to any specific OS or hardware
+
+        =>The Java Virtual Machine (JVM) on each platform (Windows, Linux, Mac) reads and executes this bytecode
+
+=: Compiled or Interpreted?
+
+    Java is actually both — it uses a hybrid approach:
+
+=: Multithreaded: Built-in support for concurrent programming
+
+
+? why java is said to be object-oriented programming language? 
+
+    => "Java is called an object-oriented programming language because its design revolves around classes and objects rather than functions and logic alone. It follows the four main OOP principles — encapsulation, inheritance, polymorphism, and abstraction — and every piece of code, including the main method, must reside inside a class. This makes the code more modular, reusable, and easier to maintain."
+    
+? what is class => it's a blue print for creating object 
+    -> is class create object ==> no
+   - You write a class in Java (Student.java).
+   - The Java compiler (javac) compiles the class into bytecode (Student.class).
+   - The JVM loads the bytecode into memory.
+   - When your code executes new Student(), the JVM allocates memory on the heap and creates the object.
+   - The constructor initializes the object.
+
+
+
+? what are JVM, JRE, JDK?
+
+
+=> "JVM runs the bytecode, JRE provides the environment to run Java applications (JVM + libraries), and JDK is the full development kit (JRE + compiler and other tools) used to write and build Java programs."
+
+
+
+JVM (Java Virtual Machine)
+    What it is: An abstract machine / runtime engine that actually executes Java bytecode (.class files).
+    Role: It's what makes Java "platform independent" — bytecode runs on any device that has a JVM implementation, regardless of the underlying OS/hardware.
+    Key job: Loads code, verifies it, executes it, and manages memory (via the garbage collector).
+    Note: JVM is platform-dependent in implementation (different JVMs for Windows/Linux/Mac), but the bytecode it runs is platform-independent. It doesn't come alone — it's part of JRE.
+
+JRE (Java Runtime Environment)
+    What it is: JVM + a set of libraries/class files (like java.lang, java.util, etc.) + supporting files needed to run Java applications.
+    Role: If you just want to run a Java program (not develop one), JRE is enough.
+    Formula: JRE = JVM + Libraries
+
+JDK (Java Development Kit)
+    What it is: A full software development kit for Java — includes JRE plus development tools like the compiler (javac), debugger, javadoc, jar tool, etc.
+    Role: Needed if you want to write and compile Java code, not just run it.
+    Formula: JDK = JRE + Development Tools (compiler, debugger, etc.) = JVM + Libraries + Dev Tools
+
+
+
+? what is methods ? 
+
+=> "A method in Java is a collection of statements grouped to perform a specific operation. It's defined inside a class, has a name, return type, and optional parameters, and is executed only when called. Methods help achieve code reusability, modularity, and abstraction."
+
+
+? what is method Overloading? 
+
+    Method overloading allows a class to have multiple methods with the same name but different parameter lists.
+
+=> Examples
+
+    class Calculator {
+        // different number of parameters
+        int add(int a, int b) {
+            return a + b;
+        }
+
+        int add(int a, int b, int c) {
+            return a + b + c;
+        }
+
+        // different type of parameters
+        double add(double a, double b) {
+            return a + b;
+        }
+
+        // different order of parameters
+        String add(String a, int b) {
+            return a + b;
+        }
+
+        String add(int a, String b) {
+            return a + b;
+        }
+    }
+
+
+
+? stack and heap memory in java and how it works ?
+
+=> "Stack memory stores method calls, local variables, and object references in LIFO order — it's fast, thread-specific, and automatically cleaned up when a method returns. Heap memory stores actual objects and is shared across the application, managed by the Garbage Collector. Stack overflow happens with too much recursion; heap overflow happens when too many objects are created without being garbage collected."
+
+
+Stack and Heap Memory in Java
+    Java divides runtime memory into several parts, but the two most important (and most asked in interviews) are Stack and Heap.
+
+Stack Memory
+    -Stores method call frames: local variables, method parameters, and partial results.
+    -Follows LIFO (Last In First Out) order — each thread gets its own stack.
+    -Each method call creates a new stack frame; when the method finishes, its frame is popped off (removed).
+    -Stores primitive local variables (int, char, boolean, etc.) directly, and references (pointers) to objects — not the objects themselves.
+    -Fast access, memory is automatically allocated and deallocated as methods are called/return.
+    -Size is fixed and relatively small; if too many nested/recursive calls happen → StackOverflowError.
+
+Heap Memory
+    -Stores all objects and their instance variables (created using new), plus arrays.
+    -Shared across the entire application (all threads access the same heap).
+    -Managed by the Garbage Collector — objects with no references are eventually removed automatically.
+    -Slower access than stack (more overhead), but flexible in size.
+    Larger, dynamically sized; if it runs out of space for new objects → OutOfMemoryError: Java heap space.
+    -Heap is further divided into Young Generation (Eden + Survivor spaces), Old/Tenured Generation — relevant to GC algorithms.
+    -Example to visualize
+
+
+
+ARRAY
+------
+    int num1 [] = {1,2,3}
+    int num [] = new int[4]
+
+Multi Dimensional
+---------------- 
+    int nums [][] = new int[3][4]
+
+
+=> exception ? => error in run time
+
+=> instance variables ? => the variables that belong to a class instead of a method 
