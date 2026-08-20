@@ -137,3 +137,53 @@ Multi Dimensional
 => exception ? => error in run time
 
 => instance variables ? => the variables that belong to a class instead of a method 
+
+
+=> Enhanced for loop example 
+
+    for(int n : nums){
+
+    }
+
+
+String 
+------
+
+    String name = new String("navine"); 
+    String name = navine
+
+    => both should work
+
+    => String is not a primitive datatype like int,double etc.. it is a class , so it start with capital letter S 
+
+
+String Constant pool
+
+=>  String s1 = "Akshay";
+    String s2 = "Akshay";
+
+
+    - When s1 = "Akshay" executes, JVM checks the String Constant Pool (SCP) first.
+    - "Akshay" isn't there yet → a new String object is created inside the SCP, and s1 refers to that address.
+    - When s2 = "Akshay" executes, JVM again checks SCP first.
+    - "Akshay" already exists → no new object is created. s2 is simply  made to point to the same address as s1.
+    -Result: only 1 object in memory, referenced by 2 variables.
+
+
+    s1 = s1 + "pv" 
+
+    A new String object is created, but it does NOT automatically go into the SCP — it goes into the regular heap (outside the pool). It depends on whether s1 is a variable or a compile-time constant.
+
+    and the address of s1 will change to new one 
+
+? Why the address changes ?
+    Since Strings are immutable in Java, the original "Akshay" object can never be modified.
+
+
+Mutable strings  => StringBuffer, StringBuilder
+--------------
+
+
+
+
+
