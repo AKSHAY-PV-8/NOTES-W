@@ -183,6 +183,10 @@ String Constant pool
 Mutable strings  => StringBuffer, StringBuilder
 --------------
 
+example => 
+    StringBuffer sb = new StringBuffer("akshay");
+
+
 
 
 
