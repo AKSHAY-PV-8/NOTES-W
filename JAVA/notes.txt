@@ -188,6 +188,60 @@ example =>
 
 
 
+static Keyword in Java
+
+    The static keyword means a member (variable, method, block, or nested class) belongs to the class itself, not to any specific object. It's shared across all instances of that class instead of each object having its own copy.
 
 
+1. Static Variables (Class Variables)
+
+    Shared by all objects of the class — only one copy exists in memory (stored in the Method Area / Metaspace, not in each object).
+    Useful for values common to all instances (e.g., counters, constants).
+    java
+
+    class Student {
+        String name;
+        static String college = "ABC College";  // shared by all students
+
+        Student(String name) {
+            this.name = name;
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            Student s1 = new Student("Akshay");
+            Student s2 = new Student("Priya");
+
+            System.out.println(s1.college); // ABC College
+            System.out.println(s2.college); // ABC College
+
+            Student.college = "XYZ College";  // change once, affects all
+            System.out.println(s1.college);   // XYZ College
+            System.out.println(s2.college);   // XYZ College
+        }
+    }  
+
+
+2. Static Methods
+    Belong to the class, not an object → called using ClassName.methodName() (no need to create an object).
+    Can only directly access other static members (variables/methods) — cannot access instance (non-static) members directly, because there's no object context (this).
+
+
+    class MathUtil {
+        static int square(int n) {
+            return n * n;
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            int result = MathUtil.square(5);  // no object created
+            System.out.println(result);        // 25
+        }
+    }
+
+📌 This is why main() itself is static — JVM calls it without creating an object of the class first:
+
+    public static void main(String[] args) { ... }
 
